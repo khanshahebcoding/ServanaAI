@@ -1,7 +1,8 @@
+'use client';
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import LifecycleRibbon from "./lifecycle-ribbon";
+import { Card } from "@/components/ui/card";
 
 const heroImage = PlaceHolderImages.find((p) => p.id === "incident-pipeline-mockup");
 
@@ -18,16 +19,21 @@ export function FeaturesHero() {
               From automated incident resolution to intelligent asset lifecycle tracking, experience the future of service management.
             </p>
           </div>
-          <div className="relative mt-12 md:mt-20 w-full max-w-5xl">
-            {heroImage && (
-                 <div className="absolute inset-0 bg-white/30 backdrop-blur-lg rounded-3xl border border-white/20 shadow-lg p-8">
-                     <LifecycleRibbon currentStatusId={3} />
-                 </div>
-            )}
-            <div className="relative bg-white/30 backdrop-blur-lg rounded-3xl border border-white/20 shadow-lg p-8 invisible">
-                 <LifecycleRibbon currentStatusId={3} />
-             </div>
-
+          <div className="mt-12 md:mt-20 w-full max-w-5xl space-y-8">
+            <LifecycleRibbon currentStatusId={3} />
+            <Card className="relative mx-auto rounded-xl shadow-2xl p-2 bg-background/50 backdrop-blur-sm">
+              {heroImage && (
+                <Image
+                  src={heroImage.imageUrl}
+                  alt={heroImage.description}
+                  width={1200}
+                  height={780}
+                  className="rounded-lg object-cover"
+                  data-ai-hint={heroImage.imageHint}
+                  priority
+                />
+              )}
+            </Card>
           </div>
         </div>
       </div>
