@@ -95,6 +95,24 @@
       "description": "A warranty report dashboard showing expiration dates for various assets.",
       "imageUrl": "https://images.unsplash.com/photo-1634919739958-9d29b0f9b6c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YXJyYW50eSUyMHJlcG9ydCUyMGRhc2hib2FyZHxlbnwwfHx8fDE3Njg3NDAwMDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "warranty audit report"
+    },
+    {
+      "id": "org-branch-setup",
+      "description": "A modal window for creating a new branch in the organization.",
+      "imageUrl": "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvcmdhbml6YXRpb24lMjBicmFuY2glMjBzZXR1cCUyMG1vZGFsfGVufDB8fHx8MTc2ODc0MjAwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "organization branch setup"
+    },
+    {
+      "id": "org-dept-mapping",
+      "description": "A screen showing departments being mapped within an organizational structure.",
+      "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkZXBhcnRtZW50JTIwbWFwcGluZyUyMHVpfGVufDB8fHx8MTc2ODc0MjAwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "department mapping ui"
+    },
+    {
+      "id": "org-vendor-sync",
+      "description": "A directory of vendors with contact information and status.",
+      "imageUrl": "https://images.unsplash.com/photo-1520607162513-77705c6f0d4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx2ZW5kb3IlMjBkaXJlY3RvcnklMjBsaXN0fGVufDB8fHx8MTc2ODc0MjAwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "vendor directory list"
     }
   ]
 }
