@@ -36,6 +36,8 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const closeMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <header
       className={cn(
@@ -48,7 +50,7 @@ export function Navbar() {
           <div className="bg-primary text-primary-foreground rounded-full p-2">
             <Logo className="h-6 w-6" />
           </div>
-          <span className="text-xl font-bold text-foreground">SupportEngine</span>
+          <span className="text-xl font-bold text-foreground">ServanaAI</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
@@ -76,15 +78,21 @@ export function Navbar() {
                   <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] bg-background">
+              <SheetContent side="right" className="w-[300px] bg-background p-0">
                 <div className="flex h-full flex-col">
                   <div className="flex items-center justify-between border-b p-4">
-                    <Link href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Link href="#" className="flex items-center gap-2" onClick={closeMenu}>
                       <div className="bg-primary text-primary-foreground rounded-full p-2">
                         <Logo className="h-6 w-6" />
                       </div>
-                      <span className="text-xl font-bold text-foreground">SupportEngine</span>
+                      <span className="text-xl font-bold text-foreground">ServanaAI</span>
                     </Link>
+                    <SheetTrigger asChild>
+                       <Button variant="ghost" size="icon" onClick={closeMenu}>
+                        <X className="h-6 w-6" />
+                        <span className="sr-only">Close menu</span>
+                      </Button>
+                    </SheetTrigger>
                   </div>
                   <nav className="flex-1 space-y-4 p-4">
                     {navLinks.map((link) => (
@@ -92,7 +100,7 @@ export function Navbar() {
                         key={link.href}
                         href={link.href}
                         className="block text-lg font-medium text-foreground/80 transition-colors hover:text-foreground"
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={closeMenu}
                       >
                         {link.label}
                       </Link>

@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'SupportEngine - AI-Powered IT Support',
-  description: 'Revolutionize Your IT Support with SupportEngine. SupportEngine integrates intelligent automation to manage incidents, assets, and analytics seamlessly.',
+  title: 'ServanaAI | Intelligent IT Support Automation',
+  description: 'ServanaAI introduces SupportEngine, the revolutionary AI-powered platform designed to streamline your IT service desk operations. Manage incidents, assets, and analytics with unparalleled intelligence and efficiency.',
 };
 
 export default function RootLayout({
