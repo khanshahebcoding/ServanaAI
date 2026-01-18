@@ -9,7 +9,7 @@ export function Hero() {
         className="absolute inset-0 -z-10"
         style={{
           backgroundImage:
-            "radial-gradient(circle at top left, hsl(340 95% 70% / 0.5), transparent 40%), radial-gradient(circle at bottom right, hsl(260 95% 60% / 0.5), transparent 40%)",
+            "radial-gradient(circle at top left, hsl(238 100% 70% / 0.5), transparent 40%), radial-gradient(circle at bottom right, hsl(262 84% 59% / 0.5), transparent 40%)",
         }}
       />
       <div className="container mx-auto px-4 md:px-6">
