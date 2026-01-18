@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -14,9 +14,12 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#documentation", label: "Documentation" },
+  { href: "#", label: "Home" },
+  { href: "#choose", label: "Choose" },
+  { href: "#service", label: "Service" },
+  { href: "#apps", label: "Apps" },
+  { href: "#testimonial", label: "Testimonial" },
+  { href: "#blog", label: "Blog" },
 ];
 
 export function Navbar() {
@@ -40,8 +43,10 @@ export function Navbar() {
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="#" className="flex items-center gap-2" prefetch={false}>
-          <Logo className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold text-primary">ServanaAI</span>
+          <div className="bg-primary text-primary-foreground rounded-full p-2">
+            <Logo className="h-6 w-6" />
+          </div>
+          <span className="text-xl font-bold text-foreground">eSoft</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
@@ -56,8 +61,9 @@ export function Navbar() {
           ))}
         </nav>
         <div className="hidden items-center gap-4 md:flex">
-          <Button variant="ghost">Log In</Button>
-          <Button>Get Started</Button>
+          <Button>
+            Start Your Free trail <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
         </div>
         <div className="md:hidden">
            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -71,8 +77,10 @@ export function Navbar() {
               <div className="flex h-full flex-col">
                 <div className="flex items-center justify-between border-b p-4">
                   <Link href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Logo className="h-6 w-6 text-primary" />
-                    <span className="text-xl font-bold text-primary">ServanaAI</span>
+                    <div className="bg-primary text-primary-foreground rounded-full p-2">
+                      <Logo className="h-6 w-6" />
+                    </div>
+                    <span className="text-xl font-bold text-foreground">eSoft</span>
                   </Link>
                 </div>
                 <nav className="flex-1 space-y-4 p-4">
@@ -88,8 +96,9 @@ export function Navbar() {
                   ))}
                 </nav>
                 <div className="border-t p-4 flex flex-col gap-4">
-                    <Button variant="ghost" className="w-full">Log In</Button>
-                    <Button className="w-full">Get Started</Button>
+                    <Button className="w-full">
+                      Start Your Free trail <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
                 </div>
               </div>
             </SheetContent>

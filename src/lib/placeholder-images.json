@@ -2,21 +2,9 @@
   "placeholderImages": [
     {
       "id": "dashboard-mockup",
-      "description": "A mockup of the ServanaAI dashboard showing KPIs and charts.",
-      "imageUrl": "https://images.unsplash.com/photo-1610913721979-b20ede600e63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkYXNoYm9hcmQlMjBhbmFseXRpY3N8ZW58MHx8fHwxNzY4Njc3MzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "dashboard analytics"
-    },
-    {
-      "id": "asset-module",
-      "description": "An image representing the asset management module.",
-      "imageUrl": "https://images.unsplash.com/photo-1693206816374-c04522205b21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsYXB0b3AlMjBpbnZlbnRvcnl8ZW58MHx8fHwxNzY4NzIzODA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "laptop inventory"
-    },
-    {
-      "id": "product-explorer",
-      "description": "A mockup of the product interface for the explorer section.",
-      "imageUrl": "https://images.unsplash.com/photo-1762340277380-04c2c30d0ef8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c29mdHdhcmUlMjBpbnRlcmZhY2V8ZW58MHx8fHwxNzY4NjU3ODY5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "software interface"
+      "description": "A mockup of the eSoft dashboard showing crypto trading analytics.",
+      "imageUrl": "https://images.unsplash.com/photo-1644925295849-f057b6ee1c66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjcnlwdG8lMjBkYXNoYm9hcmR8ZW58MHx8fHwxNzY4NzI0NDQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "crypto dashboard"
     }
   ]
 }
