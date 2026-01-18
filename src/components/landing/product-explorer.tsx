@@ -21,10 +21,10 @@ export function ProductExplorer() {
           <div className="relative z-10 grid gap-8 p-8 md:p-16 lg:grid-cols-2">
             <div className="space-y-6">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Explore ServanaAI in Action
+                Explore SupportEngine in Action
               </h2>
               <p className="max-w-[600px] text-lg text-primary-foreground/80 md:text-xl">
-                Words can only say so much. See for yourself how ServanaAI can
+                Words can only say so much. See for yourself how SupportEngine can
                 revolutionize your IT support. Schedule a personalized demo
                 with one of our product experts today.
               </p>

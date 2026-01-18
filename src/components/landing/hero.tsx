@@ -19,10 +19,10 @@ export function Hero() {
               Next-Gen AI Service Desk
             </Badge>
             <h1 className="text-4xl font-extrabold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Streamline Your IT with AI-Powered Support
+              Revolutionize Your IT Support with SupportEngine
             </h1>
             <p className="mx-auto max-w-[700px] text-lg text-foreground/80 md:text-xl">
-              ServanaAI integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.
+              SupportEngine integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.
             </p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row">

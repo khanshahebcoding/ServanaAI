@@ -25,7 +25,7 @@ const workflowSteps = [
   {
     icon: BrainCircuit,
     title: "AI Triage",
-    description: "ServanaAI analyzes and prioritizes the ticket.",
+    description: "SupportEngine analyzes and prioritizes the ticket.",
   },
   {
     icon: Tag,

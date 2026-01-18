@@ -45,7 +45,7 @@ export function Navbar() {
           <div className="bg-primary text-primary-foreground rounded-full p-2">
             <Logo className="h-6 w-6" />
           </div>
-          <span className="text-xl font-bold text-foreground">ServanaAI</span>
+          <span className="text-xl font-bold text-foreground">SupportEngine</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
@@ -79,7 +79,7 @@ export function Navbar() {
                     <div className="bg-primary text-primary-foreground rounded-full p-2">
                       <Logo className="h-6 w-6" />
                     </div>
-                    <span className="text-xl font-bold text-foreground">ServanaAI</span>
+                    <span className="text-xl font-bold text-foreground">SupportEngine</span>
                   </Link>
                 </div>
                 <nav className="flex-1 space-y-4 p-4">

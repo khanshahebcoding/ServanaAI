@@ -20,7 +20,7 @@ const features = [
     {
         icon: Recycle,
         title: "Full Asset Lifecycle Data",
-        content: "From procurement and deployment to maintenance and retirement, ServanaAI captures every event. Make informed decisions on refresh cycles and budget planning with complete historical data."
+        content: "From procurement and deployment to maintenance and retirement, SupportEngine captures every event. Make informed decisions on refresh cycles and budget planning with complete historical data."
     },
     {
         icon: Bell,
@@ -58,7 +58,7 @@ export function AssetFeature() {
                 Complete Visibility and Control Over Your IT Assets
               </h2>
               <p className="text-lg text-foreground/80">
-                ServanaAI's Asset Module transforms how you manage your IT landscape. 
+                SupportEngine's Asset Module transforms how you manage your IT landscape. 
                 Go beyond simple tracking and unlock strategic insights.
               </p>
             </div>
