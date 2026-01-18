@@ -16,7 +16,7 @@ export function Hero() {
         <div className="flex flex-col items-center justify-center space-y-6 text-center">
           <div className="space-y-4">
             <Badge variant="secondary" className="rounded-full px-4 py-1 text-sm font-medium">
-              Powered by SupportEngine
+              Powered By ServanaAI
             </Badge>
             <h1 className="text-4xl font-extrabold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
               Revolutionize Your IT Support with SupportEngine
