@@ -25,7 +25,7 @@ interface LifecycleRibbonProps {
 
 const LifecycleRibbon = ({ statuses = defaultStatuses, currentStatusId, setCurrentStatusId, isInteractive = false }: LifecycleRibbonProps) => {
   return (
-    <div className="w-full py-12 px-6 bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+    <div className="w-full py-12 px-12 bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
       <div className="relative flex justify-between items-center max-w-5xl mx-auto">
         {/* Background Track */}
         <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-100 -translate-y-1/2" />
