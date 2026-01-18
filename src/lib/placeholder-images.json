@@ -39,80 +39,98 @@
     {
       "id": "incident-created",
       "description": "A user submitting a new IT support ticket through a web portal.",
-      "imageUrl": "https://images.unsplash.com/photo-1584601218757-8a412705aaa6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWNrZXQlMjBjcmVhdGlvbiUyMGZvcm18ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1652018440238-1aeb20a803a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0aWNrZXQlMjBjcmVhdGlvbiUyMGZvcm18ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "ticket creation form"
     },
     {
       "id": "incident-acknowledged",
       "description": "A dashboard view showing the newly created ticket with an 'Acknowledged' status.",
-      "imageUrl": "https://images.unsplash.com/photo-1582043166127-0a1a099bbf76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGFzaGJvYXJkJTIwdGlja2V0JTIwYWNrbm93bGVkZ2VkfGVufDB8fHx8MTc2ODczMzA4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1643190919327-135c901c7385?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjB0aWNrZXQlMjBhY2tub3dsZWRnZWR8ZW58MHx8fHwxNzY4NzMzMDgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dashboard ticket acknowledged"
     },
     {
       "id": "incident-assigned",
       "description": "A screen showing the ticket being assigned to a support engineer from a dropdown menu.",
-      "imageUrl": "https://images.unsplash.com/photo-1721632093726-da7496162bd9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0aWNrZXQlMjBhc3NpZ25tZW50JTIwc2NyZWVufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1703960525294-53f01e3546eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWNrZXQlMjBhc3NpZ25tZW50JTIwc2NyZWVufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "ticket assignment screen"
     },
     {
       "id": "incident-in-progress",
       "description": "A view of the ticket with a chat/activity log showing communication between the user and support.",
-      "imageUrl": "https://images.unsplash.com/photo-1707061803305-58383ee49415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0aWNrZXQlMjBhY3Rpdml0eSUyMGxvZ3xlbnwwfHx8fDE3Njg3MzMwODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1638517304679-4fbf9341c33c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGlja2V0JTIwYWN0aXZpdHklMjBsb2d8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "ticket activity log"
     },
     {
       "id": "incident-resolved",
       "description": "The ticket view with a prominent 'Resolved' status and a summary of the solution.",
-      "imageUrl": "https://images.unsplash.com/photo-1756388043288-e60ba1390155?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZXNvbHZlZCUyMHRpY2tldCUyMHZpZXd8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1731781275959-199c6705a9a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZXNvbHZlZCUyMHRpY2tldCUyMHZpZXd8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "resolved ticket view"
     },
     {
       "id": "incident-pending-closure",
       "description": "A notification or modal asking the user to confirm the resolution before the ticket is closed.",
-      "imageUrl": "https://images.unsplash.com/photo-1616010650990-20e8c46a63ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0aWNrZXQlMjBjbG9zdXJlJTIwY29uZmlybWF0aW9ufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1703960525294-53f01e3546eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWNrZXQlMjBjbG9zdXJlJTIwY29uZmlybWF0aW9ufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "ticket closure confirmation"
     },
     {
       "id": "incident-closed",
       "description": "An archived view of the closed ticket, now part of the knowledge base.",
-      "imageUrl": "https://images.unsplash.com/photo-1549499090-d7ac0cec89f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhcmNoaXZlZCUyMHRpY2tldCUyMGtub3dsZWRnZWJhc2V8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1757932520543-1806e2911cd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YXJjaGl2ZWQlMjB0aWNrZXQlMjBrbm93bGVkZ2ViYXNlfGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "archived ticket knowledgebase"
     },
     {
       "id": "asset-stock-in",
       "description": "A form on a computer screen for adding new IT assets to inventory.",
-      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhc3NldCUyMGludmVudG9yeSUyMGZvcm18ZW58MHx8fHwxNzY4NzQwMDAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1636289799206-a77cd3a2044d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhc3NldCUyMGludmVudG9yeSUyMGZvcm18ZW58MHx8fHwxNzY4NzM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "asset inventory form"
     },
     {
       "id": "asset-assigned",
       "description": "A list of assigned assets on a dashboard, showing who has which device.",
-      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhc3NldCUyMGRhc2hib2FyZCUyMGxpc3R8ZW58MHx8fHwxNzY4NzQwMDAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1688287632190-071ae4b3a129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhc3NpZ25lZCUyMGFzc2V0cyUyMGxpc3R8ZW58MHx8fHwxNzY4NzM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "assigned assets list"
     },
     {
       "id": "asset-warranty-audit",
       "description": "A warranty report dashboard showing expiration dates for various assets.",
-      "imageUrl": "https://images.unsplash.com/photo-1634919739958-9d29b0f9b6c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YXJyYW50eSUyMHJlcG9ydCUyMGRhc2hib2FyZHxlbnwwfHx8fDE3Njg3NDAwMDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1618359920180-0beecbac1ea4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d2FycmFudHklMjBhdWRpdCUyMHJlcG9ydHxlbnwwfHx8fDE3Njg3MzQxODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "warranty audit report"
     },
     {
       "id": "org-branch-setup",
       "description": "A modal window for creating a new branch in the organization.",
-      "imageUrl": "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvcmdhbml6YXRpb24lMjBicmFuY2glMjBzZXR1cCUyMG1vZGFsfGVufDB8fHx8MTc2ODc0MjAwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1622141103319-93dc297eb770?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8b3JnYW5pemF0aW9uJTIwYnJhbmNoJTIwc2V0dXB8ZW58MHx8fHwxNzY4NzM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "organization branch setup"
     },
     {
       "id": "org-dept-mapping",
       "description": "A screen showing departments being mapped within an organizational structure.",
-      "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkZXBhcnRtZW50JTIwbWFwcGluZyUyMHVpfGVufDB8fHx8MTc2ODc0MjAwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1621421770492-272ae6d7882a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkZXBhcnRtZW50JTIwbWFwcGluZyUyMHVpfGVufDB8fHx8MTc2ODczNDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "department mapping ui"
     },
     {
       "id": "org-vendor-sync",
       "description": "A directory of vendors with contact information and status.",
-      "imageUrl": "https://images.unsplash.com/photo-1520607162513-77705c6f0d4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx2ZW5kb3IlMjBkaXJlY3RvcnklMjBsaXN0fGVufDB8fHx8MTc2ODc0MjAwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1635442962671-584193cdf451?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx2ZW5kb3IlMjBkaXJlY3RvcnklMjBsaXN0fGVufDB8fHx8MTc2ODczNDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "vendor directory list"
+    },
+    {
+      "id": "user-management-add-user",
+      "description": "A UI form for adding a new user to the system.",
+      "imageUrl": "https://images.unsplash.com/photo-1762340277682-abb579ffa03c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx1c2VyJTIwY3JlYXRpb24lMjBmb3JtfGVufDB8fHx8MTc2ODczNDE4OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "user creation form"
+    },
+    {
+      "id": "user-management-role-definition",
+      "description": "A user profile screen with a dropdown to select the user's role, such as Admin or User.",
+      "imageUrl": "https://picsum.photos/seed/um2/800/600",
+      "imageHint": "user role selection"
+    },
+    {
+      "id": "user-management-branch-access",
+      "description": "A dashboard view showing data restricted to a specific branch, illustrating access control.",
+      "imageUrl": "https://images.unsplash.com/photo-1616367157213-d7ee3548263d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YnJhbmNoJTIwYWNjZXNzJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc2ODczNDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "branch access dashboard"
     }
   ]
 }
