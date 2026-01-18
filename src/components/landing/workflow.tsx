@@ -7,9 +7,16 @@ import {
   Users,
   CircleCheckBig,
   Archive,
-  ArrowRight,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
 
 const lifecycleSteps = [
   {
@@ -58,35 +65,49 @@ export function Workflow() {
             intelligent automation at every step.
           </p>
         </div>
-        <div className="mt-12 overflow-x-auto pb-4">
-          <div className="relative flex w-max items-start gap-4 md:w-full md:grid md:grid-cols-6 md:gap-8">
-            {lifecycleSteps.map((step, index) => (
-              <div
-                key={step.title}
-                className="flex w-48 flex-col items-center text-center md:w-auto relative"
-              >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <step.icon className="h-8 w-8" />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold">{step.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {step.description}
-                </p>
-                {step.tags && (
-                  <div className="mt-2 flex flex-wrap justify-center gap-1">
-                    {step.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
-                        {tag}
-                      </Badge>
-                    ))}
+        <div className="mt-12">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {lifecycleSteps.map((step, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+                  <div className="p-1 h-full">
+                    <div
+                      key={step.title}
+                      className="flex flex-col items-center text-center h-full rounded-lg border p-6"
+                    >
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                        <step.icon className="h-8 w-8" />
+                      </div>
+                      <h3 className="mt-4 text-lg font-semibold">{step.title}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground flex-grow">
+                        {step.description}
+                      </p>
+                      {step.tags && (
+                        <div className="mt-2 flex flex-wrap justify-center gap-1">
+                          {step.tags.map((tag) => (
+                            <Badge key={tag} variant="secondary">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                )}
-                {index < lifecycleSteps.length - 1 && (
-                  <ArrowRight className="absolute top-8 left-full ml-4 hidden h-8 w-8 text-muted-foreground/50 md:block" />
-                )}
-              </div>
-            ))}
-          </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </div>
+        <div className="mt-12 text-center">
+            <Button variant="outline">Show All Features</Button>
         </div>
       </div>
     </section>
