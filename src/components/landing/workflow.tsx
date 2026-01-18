@@ -17,6 +17,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const lifecycleSteps = [
   {
@@ -107,7 +108,9 @@ export function Workflow() {
           </Carousel>
         </div>
         <div className="mt-12 text-center">
-            <Button variant="outline">Show All Features</Button>
+            <Link href="/features">
+                <Button variant="outline">Show All Features</Button>
+            </Link>
         </div>
       </div>
     </section>

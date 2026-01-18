@@ -17,6 +17,24 @@
       "description": "A mockup of the product interface for the explorer section.",
       "imageUrl": "https://images.unsplash.com/photo-1764557222271-9d0556161d35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzb2Z0d2FyZSUyMGludGVyZmFjZXxlbnwwfHx8fDE3Njg2NTc4Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "software interface"
+    },
+    {
+      "id": "incident-pipeline-mockup",
+      "description": "A floating, semi-transparent mockup of the Incident Details Pipeline.",
+      "imageUrl": "https://images.unsplash.com/photo-1714901423336-1884cd3fb50f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxpbmNpZGVudCUyMG1hbmFnZW1lbnQlMjBwaXBlbGluZXxlbnwwfHx8fDE3Njg3MzA3Mzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "incident management pipeline"
+    },
+    {
+      "id": "asset-details-mockup",
+      "description": "A mockup of the Asset Details view for an HP Zbook 840.",
+      "imageUrl": "https://images.unsplash.com/photo-1639825395303-94c8441b8b13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhc3NldCUyMGRldGFpbHMlMjBzY3JlZW58ZW58MHx8fHwxNzY4NzMwNzM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "asset details screen"
+    },
+    {
+      "id": "doughnut-chart-mockup",
+      "description": "A doughnut chart showing a breakdown of open tickets by category.",
+      "imageUrl": "https://images.unsplash.com/photo-1730312382522-ca0a736edfab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkb3VnaG51dCUyMGNoYXJ0fGVufDB8fHx8MTc2ODczMDczN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "doughnut chart"
     }
   ]
 }
