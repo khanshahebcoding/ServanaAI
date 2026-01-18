@@ -24,8 +24,11 @@ const navLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
+    setIsMounted(true);
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
@@ -65,43 +68,45 @@ export function Navbar() {
           </Button>
         </div>
         <div className="md:hidden">
-           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] bg-background">
-              <div className="flex h-full flex-col">
-                <div className="flex items-center justify-between border-b p-4">
-                  <Link href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                    <div className="bg-primary text-primary-foreground rounded-full p-2">
-                      <Logo className="h-6 w-6" />
-                    </div>
-                    <span className="text-xl font-bold text-foreground">SupportEngine</span>
-                  </Link>
-                </div>
-                <nav className="flex-1 space-y-4 p-4">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block text-lg font-medium text-foreground/80 transition-colors hover:text-foreground"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.label}
+           {isMounted && (
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle navigation menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] bg-background">
+                <div className="flex h-full flex-col">
+                  <div className="flex items-center justify-between border-b p-4">
+                    <Link href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                      <div className="bg-primary text-primary-foreground rounded-full p-2">
+                        <Logo className="h-6 w-6" />
+                      </div>
+                      <span className="text-xl font-bold text-foreground">SupportEngine</span>
                     </Link>
-                  ))}
-                </nav>
-                <div className="border-t p-4 flex flex-col gap-4">
-                    <Button className="w-full">
-                      Get Started
-                    </Button>
+                  </div>
+                  <nav className="flex-1 space-y-4 p-4">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="block text-lg font-medium text-foreground/80 transition-colors hover:text-foreground"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </nav>
+                  <div className="border-t p-4 flex flex-col gap-4">
+                      <Button className="w-full">
+                        Get Started
+                      </Button>
+                  </div>
                 </div>
-              </div>
-            </SheetContent>
-          </Sheet>
+              </SheetContent>
+            </Sheet>
+           )}
         </div>
       </div>
     </header>
