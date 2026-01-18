@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, UserCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -13,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const navLinks = [
+const navLinksData = [
   { href: "#home", label: "Home" },
   { href: "#features", label: "Features" },
   { href: "#assets", label: "Assets" },
@@ -25,6 +26,20 @@ export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isMounted, setIsMounted] = React.useState(false);
+  const pathname = usePathname();
+  const isFeaturesPage = pathname === '/features';
+
+  const navLinks = navLinksData.map(link => {
+    let newHref = link.href;
+    if (isFeaturesPage) {
+      if (link.href === '#home') {
+        newHref = '/';
+      } else {
+        newHref = `/${link.href}`;
+      }
+    }
+    return { ...link, href: newHref };
+  });
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -46,7 +61,7 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+        <Link href="/" className="flex items-center gap-2" prefetch={false}>
           <div className="bg-primary text-primary-foreground rounded-full p-2">
             <Logo className="h-6 w-6" />
           </div>
@@ -55,7 +70,7 @@ export function Navbar() {
         <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
             <Link
-              key={link.href}
+              key={link.label}
               href={link.href}
               className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
               prefetch={false}
@@ -85,7 +100,7 @@ export function Navbar() {
               <SheetContent side="right" className="w-[300px] bg-background p-0">
                 <div className="flex h-full flex-col">
                   <div className="flex items-center justify-between border-b p-4">
-                    <Link href="#" className="flex items-center gap-2" onClick={closeMenu}>
+                    <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
                       <div className="bg-primary text-primary-foreground rounded-full p-2">
                         <Logo className="h-6 w-6" />
                       </div>
@@ -101,7 +116,7 @@ export function Navbar() {
                   <nav className="flex-1 space-y-4 p-4">
                     {navLinks.map((link) => (
                       <Link
-                        key={link.href}
+                        key={link.label}
                         href={link.href}
                         className="block text-lg font-medium text-foreground/80 transition-colors hover:text-foreground"
                         onClick={closeMenu}
