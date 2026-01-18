@@ -35,6 +35,48 @@
       "description": "A doughnut chart showing a breakdown of open tickets by category.",
       "imageUrl": "https://images.unsplash.com/photo-1730312382522-ca0a736edfab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkb3VnaG51dCUyMGNoYXJ0fGVufDB8fHx8MTc2ODczMDczN3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "doughnut chart"
+    },
+    {
+      "id": "incident-created",
+      "description": "A user submitting a new IT support ticket through a web portal.",
+      "imageUrl": "https://images.unsplash.com/photo-1584601218757-8a412705aaa6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWNrZXQlMjBjcmVhdGlvbiUyMGZvcm18ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ticket creation form"
+    },
+    {
+      "id": "incident-acknowledged",
+      "description": "A dashboard view showing the newly created ticket with an 'Acknowledged' status.",
+      "imageUrl": "https://images.unsplash.com/photo-1582043166127-0a1a099bbf76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGFzaGJvYXJkJTIwdGlja2V0JTIwYWNrbm93bGVkZ2VkfGVufDB8fHx8MTc2ODczMzA4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dashboard ticket acknowledged"
+    },
+    {
+      "id": "incident-assigned",
+      "description": "A screen showing the ticket being assigned to a support engineer from a dropdown menu.",
+      "imageUrl": "https://images.unsplash.com/photo-1721632093726-da7496162bd9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0aWNrZXQlMjBhc3NpZ25tZW50JTIwc2NyZWVufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ticket assignment screen"
+    },
+    {
+      "id": "incident-in-progress",
+      "description": "A view of the ticket with a chat/activity log showing communication between the user and support.",
+      "imageUrl": "https://images.unsplash.com/photo-1707061803305-58383ee49415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0aWNrZXQlMjBhY3Rpdml0eSUyMGxvZ3xlbnwwfHx8fDE3Njg3MzMwODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ticket activity log"
+    },
+    {
+      "id": "incident-resolved",
+      "description": "The ticket view with a prominent 'Resolved' status and a summary of the solution.",
+      "imageUrl": "https://images.unsplash.com/photo-1756388043288-e60ba1390155?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZXNvbHZlZCUyMHRpY2tldCUyMHZpZXd8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "resolved ticket view"
+    },
+    {
+      "id": "incident-pending-closure",
+      "description": "A notification or modal asking the user to confirm the resolution before the ticket is closed.",
+      "imageUrl": "https://images.unsplash.com/photo-1616010650990-20e8c46a63ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0aWNrZXQlMjBjbG9zdXJlJTIwY29uZmlybWF0aW9ufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ticket closure confirmation"
+    },
+    {
+      "id": "incident-closed",
+      "description": "An archived view of the closed ticket, now part of the knowledge base.",
+      "imageUrl": "https://images.unsplash.com/photo-1549499090-d7ac0cec89f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhcmNoaXZlZCUyMHRpY2tldCUyMGtub3dsZWRnZWJhc2V8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "archived ticket knowledgebase"
     }
   ]
 }

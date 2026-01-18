@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { motion } from "framer-motion";
 
 const ticketData = [
   { name: 'Hardware', value: 400, color: '#4F46E5' },
@@ -27,58 +28,72 @@ export function Analytics() {
                 </div>
 
                 <div className="grid gap-8 lg:grid-cols-2">
-                    <Card className="rounded-3xl shadow-lg border-white/20 bg-white/50 backdrop-blur-lg">
-                        <CardHeader>
-                            <CardTitle>Open Tickets Overview</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="w-full h-80">
-                                <ResponsiveContainer>
-                                    <PieChart>
-                                        <Pie data={ticketData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} innerRadius={60} label>
-                                            {ticketData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={entry.color} />
-                                            ))}
-                                        </Pie>
-                                        <Legend />
-                                    </PieChart>
-                                </ResponsiveContainer>
-                            </div>
-                        </CardContent>
-                    </Card>
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <Card className="rounded-3xl shadow-lg border-white/20 bg-white/50 backdrop-blur-lg h-full">
+                            <CardHeader>
+                                <CardTitle>Open Tickets Overview</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="w-full h-80">
+                                    <ResponsiveContainer>
+                                        <PieChart>
+                                            <Pie data={ticketData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} innerRadius={60} label isAnimationActive={true}>
+                                                {ticketData.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={entry.color} />
+                                                ))}
+                                            </Pie>
+                                            <Legend />
+                                        </PieChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
 
-                    <Card className="rounded-3xl shadow-lg border-white/20 bg-white/50 backdrop-blur-lg">
-                        <CardHeader>
-                            <CardTitle>Available Stock Report</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Item</TableHead>
-                                        <TableHead>Status</TableHead>
-                                        <TableHead className="text-right">Quantity</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {stockData.map((item, index) => (
-                                        <TableRow key={index}>
-                                            <TableCell className="font-medium">{item.item}</TableCell>
-                                            <TableCell>
-                                                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                                                    item.status === 'Available' ? 'bg-green-100 text-green-800' : 
-                                                    item.status === 'Low Stock' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'
-                                                }`}>
-                                                    {item.status}
-                                                </span>
-                                            </TableCell>
-                                            <TableCell className="text-right">{item.quantity}</TableCell>
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                        <Card className="rounded-3xl shadow-lg border-white/20 bg-white/50 backdrop-blur-lg h-full">
+                            <CardHeader>
+                                <CardTitle>Available Stock Report</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Item</TableHead>
+                                            <TableHead>Status</TableHead>
+                                            <TableHead className="text-right">Quantity</TableHead>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </CardContent>
-                    </Card>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {stockData.map((item, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell className="font-medium">{item.item}</TableCell>
+                                                <TableCell>
+                                                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                                                        item.status === 'Available' ? 'bg-green-100 text-green-800' : 
+                                                        item.status === 'Low Stock' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'
+                                                    }`}>
+                                                        {item.status}
+                                                    </span>
+                                                </TableCell>
+                                                <TableCell className="text-right">{item.quantity}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
                 </div>
             </div>
         </section>

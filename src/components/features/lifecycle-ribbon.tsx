@@ -12,10 +12,12 @@ const statuses = [
 ];
 
 interface LifecycleRibbonProps {
-  currentStatusId?: number;
+  currentStatusId: number;
+  setCurrentStatusId?: (id: number) => void;
+  isInteractive?: boolean;
 }
 
-const LifecycleRibbon = ({ currentStatusId = 2 }: LifecycleRibbonProps) => {
+const LifecycleRibbon = ({ currentStatusId, setCurrentStatusId, isInteractive = false }: LifecycleRibbonProps) => {
   return (
     <div className="w-full py-12 px-6 bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
       <div className="relative flex justify-between items-center max-w-5xl mx-auto">
@@ -36,7 +38,19 @@ const LifecycleRibbon = ({ currentStatusId = 2 }: LifecycleRibbonProps) => {
           const isCurrent = status.id === currentStatusId;
 
           return (
-            <div key={status.id} className="relative z-10 flex flex-col items-center">
+            <div 
+                key={status.id} 
+                className="relative z-10 flex flex-col items-center"
+                onClick={() => isInteractive && setCurrentStatusId && setCurrentStatusId(status.id)}
+                role={isInteractive ? "button" : undefined}
+                tabIndex={isInteractive ? 0 : -1}
+                onKeyDown={(e) => {
+                    if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
+                        e.preventDefault();
+                        setCurrentStatusId && setCurrentStatusId(status.id);
+                    }
+                }}
+            >
               {/* Node Circle */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -46,9 +60,9 @@ const LifecycleRibbon = ({ currentStatusId = 2 }: LifecycleRibbonProps) => {
                   backgroundColor: isActive ? '#4F46E5' : '#F1F5F9'
                 }}
                 whileHover={{ scale: 1.3 }}
-                className={`w-4 h-4 rounded-full border-4 ${
+                className={`w-4 h-4 rounded-full border-4 transition-colors ${
                   isActive ? 'border-white ring-2 ring-primary' : 'border-white'
-                }`}
+                } ${isInteractive ? 'cursor-pointer' : ''}`}
               />
 
               {/* Status Label */}
