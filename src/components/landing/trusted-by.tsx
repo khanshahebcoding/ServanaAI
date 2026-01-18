@@ -4,7 +4,7 @@ export function TrustedBy() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold tracking-wider text-muted-foreground uppercase">
-            Trusted by 50,000+ businesses to scale outbound sales and drive new revenue
+            Trusted by innovative companies worldwide
           </p>
           <div className="mt-8 grid grid-cols-2 items-center justify-center gap-8 md:grid-cols-5">
             <span className="text-2xl font-bold text-muted-foreground/60">TakeShape</span>

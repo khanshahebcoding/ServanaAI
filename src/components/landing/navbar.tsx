@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -14,12 +14,11 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "#", label: "Home" },
-  { href: "#choose", label: "Choose" },
-  { href: "#service", label: "Service" },
-  { href: "#apps", label: "Apps" },
-  { href: "#testimonial", label: "Testimonial" },
-  { href: "#blog", label: "Blog" },
+  { href: "#home", label: "Home" },
+  { href: "#features", label: "Features" },
+  { href: "#assets", label: "Assets" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#documentation", label: "Documentation" },
 ];
 
 export function Navbar() {
@@ -46,7 +45,7 @@ export function Navbar() {
           <div className="bg-primary text-primary-foreground rounded-full p-2">
             <Logo className="h-6 w-6" />
           </div>
-          <span className="text-xl font-bold text-foreground">eSoft</span>
+          <span className="text-xl font-bold text-foreground">ServanaAI</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
@@ -62,7 +61,7 @@ export function Navbar() {
         </nav>
         <div className="hidden items-center gap-4 md:flex">
           <Button>
-            Start Your Free trail <ArrowRight className="ml-2 h-4 w-4" />
+            Get Started
           </Button>
         </div>
         <div className="md:hidden">
@@ -80,7 +79,7 @@ export function Navbar() {
                     <div className="bg-primary text-primary-foreground rounded-full p-2">
                       <Logo className="h-6 w-6" />
                     </div>
-                    <span className="text-xl font-bold text-foreground">eSoft</span>
+                    <span className="text-xl font-bold text-foreground">ServanaAI</span>
                   </Link>
                 </div>
                 <nav className="flex-1 space-y-4 p-4">
@@ -97,7 +96,7 @@ export function Navbar() {
                 </nav>
                 <div className="border-t p-4 flex flex-col gap-4">
                     <Button className="w-full">
-                      Start Your Free trail <ArrowRight className="ml-2 h-4 w-4" />
+                      Get Started
                     </Button>
                 </div>
               </div>

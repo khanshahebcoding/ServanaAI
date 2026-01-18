@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'eSoft - Time Tracking Software',
-  description: 'Boost your productivity, improve profitability, and reduce stress with our all-in-one time management solution.',
+  title: 'ServanaAI - AI-Powered IT Support',
+  description: 'Streamline Your IT with AI-Powered Support. ServanaAI integrates intelligent automation to manage incidents, assets, and analytics seamlessly.',
 };
 
 export default function RootLayout({

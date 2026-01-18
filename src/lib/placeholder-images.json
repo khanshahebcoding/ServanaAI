@@ -2,9 +2,21 @@
   "placeholderImages": [
     {
       "id": "dashboard-mockup",
-      "description": "A mockup of the eSoft dashboard showing crypto trading analytics.",
-      "imageUrl": "https://images.unsplash.com/photo-1644925295849-f057b6ee1c66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjcnlwdG8lMjBkYXNoYm9hcmR8ZW58MHx8fHwxNzY4NzI0NDQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "crypto dashboard"
+      "description": "A mockup of the ServanaAI dashboard showing IT service analytics.",
+      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff98c37a2452?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxpdCUyMHNlcnZpY2UlMjBkYXNoYm9hcmR8ZW58MHx8fHwxNzE5NDI1NzY3fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "IT service dashboard"
+    },
+    {
+      "id": "asset-module",
+      "description": "A computer screen showing asset management software.",
+      "imageUrl": "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNDE5ODJ8MHwxfGFsbHx8fHx8fHx8fDE2NzA0MzM2NTE&ixlib=rb-1.2.1&q=80&w=1080",
+      "imageHint": "asset management"
+    },
+    {
+      "id": "product-explorer",
+      "description": "A mockup of the product interface for the explorer section.",
+      "imageUrl": "https://images.unsplash.com/photo-1764557222271-9d0556161d35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzb2Z0d2FyZSUyMGludGVyZmFjZXxlbnwwfHx8fDE3Njg2NTc4Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "software interface"
     }
   ]
 }

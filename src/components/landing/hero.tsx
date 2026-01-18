@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { DashboardMockup } from "./dashboard-mockup";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
@@ -17,24 +16,21 @@ export function Hero() {
         <div className="flex flex-col items-center justify-center space-y-6 text-center">
           <div className="space-y-4">
             <Badge variant="secondary" className="rounded-full px-4 py-1 text-sm font-medium">
-              No 01 Time Tracker Software on Producthunt
+              Next-Gen AI Service Desk
             </Badge>
             <h1 className="text-4xl font-extrabold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Stop Wasting Time,
-              <br />
-              Start Tracking It.
+              Streamline Your IT with AI-Powered Support
             </h1>
             <p className="mx-auto max-w-[700px] text-lg text-foreground/80 md:text-xl">
-              Boost your productivity, improve profitability, and reduce stress
-              with our all-in-one time management solution.
+              ServanaAI integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.
             </p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row">
             <Button size="lg" className="sm:w-auto">
-              Get Started, It's Free <ArrowRight className="ml-2 h-4 w-4" />
+              Get Started
             </Button>
             <Button size="lg" variant="outline" className="sm:w-auto bg-white">
-              Get a Demo <ArrowRight className="ml-2 h-4 w-4" />
+              Book a Demo
             </Button>
           </div>
         </div>

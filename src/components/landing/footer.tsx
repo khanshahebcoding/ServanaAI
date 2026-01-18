@@ -9,10 +9,10 @@ export function Footer() {
           <div className="bg-primary text-primary-foreground rounded-full p-2">
             <Logo className="h-6 w-6" />
           </div>
-          <span className="text-lg font-semibold text-foreground">eSoft</span>
+          <span className="text-lg font-semibold text-foreground">ServanaAI</span>
         </div>
         <p className="text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} eSoft. All rights reserved.
+          &copy; {new Date().getFullYear()} ServanaAI. All rights reserved.
         </p>
         <div className="flex items-center gap-4">
           <Link href="#" className="text-sm text-muted-foreground hover:text-foreground" prefetch={false}>

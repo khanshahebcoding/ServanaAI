@@ -36,7 +36,7 @@ const features = [
 
 export function AssetFeature() {
   return (
-    <section className="w-full py-20 md:py-24 lg:py-32 bg-card">
+    <section id="assets" className="w-full py-20 md:py-24 lg:py-32 bg-card">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-24 items-center">
           <div className="relative">
