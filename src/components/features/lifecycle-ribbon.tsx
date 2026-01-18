@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 
-const statuses = [
+const defaultStatuses = [
   { id: 1, label: 'Created' },
   { id: 2, label: 'Acknowledged' },
   { id: 3, label: 'Assigned' },
@@ -11,13 +11,19 @@ const statuses = [
   { id: 7, label: 'Closed' }
 ];
 
+interface Status {
+  id: number;
+  label: string;
+}
+
 interface LifecycleRibbonProps {
+  statuses?: Status[];
   currentStatusId: number;
   setCurrentStatusId?: (id: number) => void;
   isInteractive?: boolean;
 }
 
-const LifecycleRibbon = ({ currentStatusId, setCurrentStatusId, isInteractive = false }: LifecycleRibbonProps) => {
+const LifecycleRibbon = ({ statuses = defaultStatuses, currentStatusId, setCurrentStatusId, isInteractive = false }: LifecycleRibbonProps) => {
   return (
     <div className="w-full py-12 px-6 bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
       <div className="relative flex justify-between items-center max-w-5xl mx-auto">

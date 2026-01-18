@@ -71,7 +71,7 @@ export function IncidentManagement() {
                 </div>
                 
                 <div className="mb-16">
-                    <LifecycleRibbon currentStatusId={activeStatusId} setCurrentStatusId={setActiveStatusId} isInteractive={true} />
+                    <LifecycleRibbon statuses={incidentSteps} currentStatusId={activeStatusId} setCurrentStatusId={setActiveStatusId} isInteractive={true} />
                 </div>
                 
                 <div className="relative min-h-[500px] md:min-h-[400px] lg:min-h-[450px]">
