@@ -15,22 +15,22 @@ const features = [
     {
         icon: Database,
         title: "Centralized Inventory Control",
-        content: "Gain a single source of truth for all your hardware, software, and cloud assets. Track ownership, status, and location in real-time to eliminate ghost assets and optimize utilization."
+        content: "Gain a single source of truth for all IT assets. Track stock in/out, current assignments, and full inventory history to eliminate ghost assets and optimize utilization."
     },
     {
         icon: Recycle,
         title: "Full Asset Lifecycle Data",
-        content: "From procurement and deployment to maintenance and retirement, SupportEngine captures every event. Make informed decisions on refresh cycles and budget planning with complete historical data."
+        content: "From procurement to retirement, SupportEngine captures every event. Access technical specs, associated spare parts, and visual documentation for informed decision-making."
     },
     {
         icon: Bell,
-        title: "Automated Warranty & License Alerts",
-        content: "Proactively manage your contracts. Receive automated notifications for expiring warranties and software licenses, ensuring continuous coverage and compliance while avoiding unnecessary costs."
+        title: "Automated Warranty Alerts",
+        content: "Proactively manage your contracts. Receive automated notifications for expiring warranties, ensuring continuous coverage and minimizing downtime."
     },
     {
         icon: Network,
         title: "Organizational Hierarchy Mapping",
-        content: "Map assets to specific users, departments, and physical locations. This contextual data is crucial for rapid incident resolution, accurate cost allocation, and effective change management."
+        content: "Map assets to branches (e.g., Banani, Farmgate), departments, and designations. Includes a vendor directory to manage hardware suppliers and procurement channels."
     }
 ]
 
@@ -58,8 +58,8 @@ export function AssetFeature() {
                 Complete Visibility and Control Over Your IT Assets
               </h2>
               <p className="text-lg text-foreground/80">
-                SupportEngine's Asset Module transforms how you manage your IT landscape. 
-                Go beyond simple tracking and unlock strategic insights.
+                SupportEngine's Asset Module provides a holistic view of your entire IT landscape. 
+                Go beyond simple tracking to unlock strategic insights and operational efficiency.
               </p>
             </div>
              <Accordion type="single" collapsible defaultValue="item-0" className="w-full">

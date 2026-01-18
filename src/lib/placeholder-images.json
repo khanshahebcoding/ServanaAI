@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "dashboard-mockup",
-      "description": "A mockup of the ServanaAI dashboard showing IT service analytics.",
-      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff98c37a2452?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxpdCUyMHNlcnZpY2UlMjBkYXNoYm9hcmR8ZW58MHx8fHwxNzE5NDI1NzY3fDA&ixlib=rb-4.0.3&q=80&w=1080",
-      "imageHint": "IT service dashboard"
+      "description": "A real-time executive dashboard showing KPI cards for incident volume, doughnut charts for ticket categories, and a 'My Assigned Assets' personal queue.",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpdCUyMHNlcnZpY2UlMjBkYXNoYm9hcmQlMjBhbmFseXRpY3N8ZW58MHx8fHwxNzE5NDI4NzUxfDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "IT dashboard analytics"
     },
     {
       "id": "asset-module",
