@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, UserCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -68,6 +68,10 @@ export function Navbar() {
           <Button>
             Get Started
           </Button>
+          <Button variant="ghost" size="icon">
+            <UserCircle className="h-6 w-6" />
+            <span className="sr-only">Account</span>
+          </Button>
         </div>
         <div className="md:hidden">
            {isMounted && (
@@ -109,6 +113,10 @@ export function Navbar() {
                   <div className="border-t p-4 flex flex-col gap-4">
                       <Button className="w-full">
                         Get Started
+                      </Button>
+                      <Button variant="outline" className="w-full">
+                        <UserCircle className="mr-2 h-4 w-4" />
+                        Account
                       </Button>
                   </div>
                 </div>
