@@ -21,14 +21,14 @@ export function FeaturesHero() {
           </div>
           <div className="mt-12 md:mt-20 w-full max-w-5xl space-y-8">
             <LifecycleRibbon currentStatusId={3} />
-            <Card className="relative mx-auto rounded-xl shadow-2xl p-2 bg-background/50 backdrop-blur-sm">
+            <Card className="relative mx-auto rounded-xl shadow-2xl overflow-hidden bg-background/50 backdrop-blur-sm">
               {heroImage && (
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
                   width={1200}
                   height={780}
-                  className="rounded-lg object-cover"
+                  className="rounded-lg object-cover w-full h-auto"
                   data-ai-hint={heroImage.imageHint}
                   priority
                 />

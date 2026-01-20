@@ -15,7 +15,7 @@ export function DashboardMockup() {
               alt={dashboardImage.description}
               width={1200}
               height={780}
-              className="object-cover"
+              className="object-cover w-full h-auto"
               data-ai-hint={dashboardImage.imageHint}
               priority
             />
