@@ -3,7 +3,6 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import LifecycleRibbon from "./lifecycle-ribbon";
 import { Card } from "@/components/ui/card";
-import UserDashboardImage from "@/lib/Dashboard.png";
 
 const heroImage = PlaceHolderImages.find((p) => p.id === "user-dashboard");
 
@@ -25,7 +24,7 @@ export function FeaturesHero() {
             <Card className="relative mx-auto rounded-xl shadow-2xl p-2 bg-background/50 backdrop-blur-sm">
               {heroImage && (
                 <Image
-                  src={UserDashboardImage}
+                  src={heroImage.imageUrl}
                   alt={heroImage.description}
                   width={1200}
                   height={780}
