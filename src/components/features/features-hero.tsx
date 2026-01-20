@@ -4,7 +4,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import LifecycleRibbon from "./lifecycle-ribbon";
 import { Card } from "@/components/ui/card";
 
-const heroImage = PlaceHolderImages.find((p) => p.id === "incident-pipeline-mockup");
+const heroImage = PlaceHolderImages.find((p) => p.id === "user-dashboard");
 
 export function FeaturesHero() {
   return (
