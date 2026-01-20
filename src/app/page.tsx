@@ -6,12 +6,13 @@ import { Workflow } from "@/components/landing/workflow";
 import { AssetFeature } from "@/components/landing/asset-feature";
 import { Pricing } from "@/components/landing/pricing";
 import { ProductExplorer } from "@/components/landing/product-explorer";
+import { BottomNavbar } from "@/components/landing/bottom-navbar";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 pb-16 md:pb-0">
         <Hero />
         <TrustedBy />
         <Workflow />
@@ -20,6 +21,7 @@ export default function Home() {
         <ProductExplorer />
       </main>
       <Footer />
+      <BottomNavbar />
     </div>
   );
 }

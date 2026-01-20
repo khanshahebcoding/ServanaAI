@@ -3,16 +3,11 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, UserCircle } from "lucide-react";
+import { UserCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/icons";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 
 const navLinksData = [
   { href: "#home", label: "Home" },
@@ -24,8 +19,6 @@ const navLinksData = [
 
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const [isMounted, setIsMounted] = React.useState(false);
   const pathname = usePathname();
   const isFeaturesPage = pathname === '/features';
 
@@ -42,16 +35,12 @@ export function Navbar() {
   });
 
   React.useEffect(() => {
-    setIsMounted(true);
-    
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <header
@@ -79,65 +68,14 @@ export function Navbar() {
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-4 md:flex">
-          <Button>
+        <div className="flex items-center gap-4">
+          <Button className="hidden md:inline-flex">
             Get Started
           </Button>
           <Button variant="ghost" size="icon">
             <UserCircle className="h-6 w-6" />
             <span className="sr-only">Account</span>
           </Button>
-        </div>
-        <div className="md:hidden">
-           {isMounted && (
-            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Toggle navigation menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] bg-background p-0">
-                <div className="flex h-full flex-col">
-                  <div className="flex items-center justify-between border-b p-4">
-                    <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
-                      <div className="bg-primary text-primary-foreground rounded-full p-2">
-                        <Logo className="h-6 w-6" />
-                      </div>
-                      <span className="text-xl font-bold text-foreground">ServanaAI</span>
-                    </Link>
-                    <SheetTrigger asChild>
-                       <Button variant="ghost" size="icon" onClick={closeMenu}>
-                        <X className="h-6 w-6" />
-                        <span className="sr-only">Close menu</span>
-                      </Button>
-                    </SheetTrigger>
-                  </div>
-                  <nav className="flex-1 space-y-4 p-4">
-                    {navLinks.map((link) => (
-                      <Link
-                        key={link.label}
-                        href={link.href}
-                        className="block text-lg font-medium text-foreground/80 transition-colors hover:text-foreground"
-                        onClick={closeMenu}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </nav>
-                  <div className="border-t p-4 flex flex-col gap-4">
-                      <Button className="w-full">
-                        Get Started
-                      </Button>
-                      <Button variant="outline" className="w-full">
-                        <UserCircle className="mr-2 h-4 w-4" />
-                        Account
-                      </Button>
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
-           )}
         </div>
       </div>
     </header>
