@@ -1,8 +1,8 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
-import { SocialSidebar } from '@/components/landing/social-sidebar';
 import { FirebaseClientProvider } from '@/firebase';
+import MainLayout from '@/components/layout/main-layout';
 
 export const metadata: Metadata = {
   title: 'ServanaAI | Intelligent IT Support Automation',
@@ -23,8 +23,9 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <FirebaseClientProvider>
-          {children}
-          <SocialSidebar />
+          <MainLayout>
+            {children}
+          </MainLayout>
           <Toaster />
         </FirebaseClientProvider>
       </body>
