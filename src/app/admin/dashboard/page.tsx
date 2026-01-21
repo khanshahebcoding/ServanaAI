@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { PlusCircle } from "lucide-react";
+import Link from "next/link";
 
 // Mock data, to be replaced with Firestore data
 const pages = [
@@ -37,7 +38,9 @@ export default function AdminDashboardPage() {
                 <CardDescription>{page.sections} editable sections</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button className="w-full">Edit Page</Button>
+                <Button asChild className="w-full">
+                  <Link href={`/admin/content?page=${page.id}`}>Edit Page</Link>
+                </Button>
               </CardContent>
             </Card>
           ))}
