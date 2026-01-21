@@ -63,9 +63,15 @@ export default function SubmissionDetailPage() {
                                 <p className="font-semibold">{submission.email}</p>
                             </div>
                         </div>
-                         <div className="space-y-1">
-                            <p className="text-sm font-medium text-muted-foreground">Company</p>
-                            <p className="font-semibold">{submission.company || 'N/A'}</p>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-1">
+                                <p className="text-sm font-medium text-muted-foreground">Contact Number</p>
+                                <p className="font-semibold">{submission.contactNumber || 'N/A'}</p>
+                            </div>
+                            <div className="space-y-1">
+                                <p className="text-sm font-medium text-muted-foreground">Company</p>
+                                <p className="font-semibold">{submission.company || 'N/A'}</p>
+                            </div>
                         </div>
                         <div className="space-y-1">
                             <p className="text-sm font-medium text-muted-foreground">Message</p>

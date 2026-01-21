@@ -36,6 +36,7 @@ export default function SubmissionsPage() {
                                 <TableHead>Form</TableHead>
                                 <TableHead>Name</TableHead>
                                 <TableHead>Email</TableHead>
+                                <TableHead>Contact Number</TableHead>
                                 <TableHead>Company</TableHead>
                                 <TableHead>Date</TableHead>
                                 <TableHead className="text-right">Actions</TableHead>
@@ -47,6 +48,7 @@ export default function SubmissionsPage() {
                                     <TableCell className="font-medium">{submission.formName}</TableCell>
                                     <TableCell>{submission.name}</TableCell>
                                     <TableCell>{submission.email}</TableCell>
+                                    <TableCell>{submission.contactNumber || 'N/A'}</TableCell>
                                     <TableCell>{submission.company}</TableCell>
                                     <TableCell>{submission.submittedAt ? format(submission.submittedAt.toDate(), 'PPpp') : 'N/A'}</TableCell>
                                     <TableCell className="text-right">

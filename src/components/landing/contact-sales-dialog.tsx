@@ -29,6 +29,7 @@ import { useToast } from '@/hooks/use-toast';
 const formSchema = z.object({
   name: z.string().min(1, { message: 'Name is required.' }),
   email: z.string().email({ message: 'Invalid email address.' }),
+  contactNumber: z.string().optional(),
   company: z.string().min(1, { message: 'Company name is required.' }),
   message: z.string().min(10, { message: 'Please provide some details about your requirements.' }),
 });
@@ -47,6 +48,7 @@ export function ContactSalesDialog({ open, onOpenChange }: ContactSalesDialogPro
     defaultValues: {
       name: '',
       email: '',
+      contactNumber: '',
       company: '',
       message: '',
     },
@@ -103,6 +105,19 @@ export function ContactSalesDialog({ open, onOpenChange }: ContactSalesDialogPro
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="name@example.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="contactNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Contact Number (Optional)</FormLabel>
+                  <FormControl>
+                    <Input placeholder="+1 234 567 890" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

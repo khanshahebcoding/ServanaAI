@@ -175,6 +175,7 @@
         },
         "name": { "type": "string", "description": "Full name of the person submitting the form." },
         "email": { "type": "string", "format": "email" },
+        "contactNumber": { "type": "string", "description": "Contact number of the person." },
         "company": { "type": "string" },
         "message": { "type": "string" },
         "submittedAt": { "type": "string", "format": "date-time" }
