@@ -5,6 +5,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { BookADemoDialog } from "./book-demo-dialog";
+import { PdfViewerDialog } from "./pdf-viewer-dialog";
 
 const explorerImage = PlaceHolderImages.find((p) => p.id === "product-explorer");
 
@@ -12,8 +13,11 @@ interface ProductExplorerContent {
   title: string;
 }
 
+const documentationPdfUrl = "/images/SupportEngine Documentation.pdf";
+
 export function ProductExplorer({ content }: { content?: ProductExplorerContent }) {
   const [isBookDemoOpen, setIsBookDemoOpen] = useState(false);
+  const [isPdfViewerOpen, setIsPdfViewerOpen] = useState(false);
   const title = content?.title || "Explore SupportEngine in Action";
 
   return (
@@ -50,7 +54,7 @@ export function ProductExplorer({ content }: { content?: ProductExplorerContent 
                   <Button size="lg" variant="secondary" onClick={() => setIsBookDemoOpen(true)}>
                     Book a Demo
                   </Button>
-                  <Button size="lg" variant="link" className="text-primary-foreground">
+                  <Button size="lg" variant="link" className="text-primary-foreground" onClick={() => setIsPdfViewerOpen(true)}>
                     Read Documentation &rarr;
                   </Button>
                 </div>
@@ -60,6 +64,12 @@ export function ProductExplorer({ content }: { content?: ProductExplorerContent 
         </motion.div>
       </section>
       <BookADemoDialog open={isBookDemoOpen} onOpenChange={setIsBookDemoOpen} />
+      <PdfViewerDialog
+        open={isPdfViewerOpen}
+        onOpenChange={setIsPdfViewerOpen}
+        pdfUrl={documentationPdfUrl}
+        title="SupportEngine Documentation"
+      />
     </>
   );
 }
