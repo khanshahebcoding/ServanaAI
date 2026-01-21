@@ -25,8 +25,8 @@ interface LifecycleRibbonProps {
 
 const LifecycleRibbon = ({ statuses = defaultStatuses, currentStatusId, setCurrentStatusId, isInteractive = false }: LifecycleRibbonProps) => {
   return (
-    <div className="w-full py-12 px-4 md:px-8 lg:px-12 bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
-      <div className="relative flex justify-between items-center max-w-5xl mx-auto">
+    <div className="w-full py-8 px-4 md:py-12 md:px-8 lg:px-12 bg-white rounded-3xl shadow-sm border border-slate-100 overflow-x-auto">
+      <div className="relative flex justify-between items-center max-w-5xl mx-auto min-w-max">
         {/* Background Track */}
         <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-100 -translate-y-1/2" />
 
@@ -80,7 +80,7 @@ const LifecycleRibbon = ({ statuses = defaultStatuses, currentStatusId, setCurre
                   color: isActive ? '#1E293B' : '#94A3B8',
                   fontWeight: isCurrent ? 600 : 400
                 }}
-                className="absolute top-7 md:top-8 whitespace-nowrap text-[10px] font-medium uppercase tracking-wider md:text-xs"
+                className="absolute top-7 md:top-8 whitespace-nowrap text-[9px] font-semibold uppercase tracking-wider sm:text-[10px] md:text-xs"
               >
                 {status.label}
               </motion.span>
