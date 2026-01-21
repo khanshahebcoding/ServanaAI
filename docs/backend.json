@@ -125,10 +125,7 @@
         },
         "featuresHero": {
           "type": "object",
-          "properties": {
-            "title": { "type": "string" },
-            "subtitle": { "type": "string" }
-          }
+          "properties": { "title": { "type": "string" }, "subtitle": { "type": "string" } }
         },
         "incidentManagement": { "$ref": "#/entities/FeatureSectionWithSteps" },
         "assetLifecycle": { "$ref": "#/entities/FeatureSectionWithSteps" },
@@ -166,6 +163,23 @@
                 }
             }
         }
+    },
+    "FormSubmission": {
+      "title": "Form Submission",
+      "type": "object",
+      "description": "Represents a submission from any form on the website, such as a lead capture form.",
+      "properties": {
+        "formName": {
+          "type": "string",
+          "description": "The name of the form that was submitted (e.g., 'Contact Sales')."
+        },
+        "name": { "type": "string", "description": "Full name of the person submitting the form." },
+        "email": { "type": "string", "format": "email" },
+        "company": { "type": "string" },
+        "message": { "type": "string" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["formName", "email", "submittedAt"]
     }
   },
   "auth": {
@@ -201,8 +215,18 @@
           },
           "description": "Stores dynamic content for pages like the homepage. Publicly readable, admin writable."
         }
+      },
+      {
+        "path": "/submissions/{submissionId}",
+        "definition": {
+          "entityName": "FormSubmission",
+          "schema": {
+            "$ref": "#/backend/entities/FormSubmission"
+          },
+          "description": "Stores lead capture and other form submissions. Writable by anyone, readable only by admins."
+        }
       }
     ],
-    "reasoning": "This Firestore structure prioritizes security and scalability for the ServanaAI Landing application by adhering to the core design principles. It focuses on authorization independence, clarity, and predictable schema.\n\nAuthorization Independence:  The structure avoids `get()` calls in security rules by denormalizing authorization data where needed.  In this application, all user data is private, stored under `/users/{userId}`.  No collaborative data scenarios requiring denormalization of membership maps are present.\n\nStructural Segregation: Each collection maintains a homogeneous security posture. User-specific data is stored under their respective user ID. Content data is stored in its own collection with different security rules.\n\nAccess Modeling: The structure uses path-based ownership (`/users/{userId}/...`) for private user data. This makes security rules straightforward, based solely on `request.auth.uid`. Content is publicly readable but only writable by an admin.\n\nData Clarity and Predictability:  The schema is explicit and predictable."
+    "reasoning": "This Firestore structure prioritizes security and scalability for the ServanaAI Landing application by adhering to the core design principles. It focuses on authorization independence, clarity, and predictable schema.\n\nAuthorization Independence:  The structure avoids `get()` calls in security rules by denormalizing authorization data where needed.  In this application, all user data is private, stored under `/users/{userId}`.  No collaborative data scenarios requiring denormalization of membership maps are present.\n\nStructural Segregation: Each collection maintains a homogeneous security posture. User-specific data is stored under their respective user ID. Content data is stored in its own collection with different security rules. Form submissions are also in their own collection, writable by the public but readable only by admins.\n\nAccess Modeling: The structure uses path-based ownership (`/users/{userId}/...`) for private user data. This makes security rules straightforward, based solely on `request.auth.uid`. Content is publicly readable but only writable by an admin. Submissions are publicly writable to allow lead capture from unauthenticated users.\n\nData Clarity and Predictability:  The schema is explicit and predictable."
   }
 }

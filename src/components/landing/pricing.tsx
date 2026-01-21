@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -13,6 +14,7 @@ import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ContactSalesDialog } from "./contact-sales-dialog";
 
 const plans = [
   {
@@ -29,6 +31,7 @@ const plans = [
     cta: "Get Started Free",
     isPopular: false,
     link: "https://app.supportengine.ai/login",
+    action: 'link' as const,
   },
   {
     name: "Professional",
@@ -45,6 +48,7 @@ const plans = [
     cta: "Start 14-day Trial",
     isPopular: true,
     link: "https://app.supportengine.ai/login",
+    action: 'link' as const,
   },
   {
     name: "Enterprise",
@@ -60,7 +64,8 @@ const plans = [
     ],
     cta: "Contact Sales",
     isPopular: false,
-    link: "#documentation",
+    link: "#",
+    action: 'dialog' as const,
   },
 ];
 
@@ -70,6 +75,7 @@ interface PricingContent {
 }
 
 export function Pricing({ content }: { content?: PricingContent }) {
+  const [isContactSalesOpen, setIsContactSalesOpen] = useState(false);
   const title = content?.title || "Choose the Right Plan for Your Team";
   const subtitle = content?.subtitle || "Simple, transparent pricing that scales with you. No hidden fees.";
 
@@ -96,82 +102,95 @@ export function Pricing({ content }: { content?: PricingContent }) {
   };
 
   return (
-    <section id="pricing" className="w-full py-20 md:py-24 lg:py-32 bg-background">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto max-w-3xl text-center"
-        >
-          <h2 className="text-3xl font-bold tracking-tighter text-primary sm:text-4xl md:text-5xl">
-            {title}
-          </h2>
-          <p className="mt-4 text-foreground/80 md:text-xl">
-            {subtitle}
-          </p>
-        </motion.div>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {plans.map((plan) => (
-            <motion.div key={plan.name} variants={itemVariants} className="h-full">
-              <Card
-                className={cn(
-                  "flex flex-col h-full",
-                  plan.isPopular && "border-accent ring-2 ring-accent"
-                )}
-              >
-                <CardHeader className="relative">
-                  {plan.isPopular && (
-                    <Badge className="absolute top-[-10px] right-6">
-                      Most Popular
-                    </Badge>
+    <>
+      <section id="pricing" className="w-full py-20 md:py-24 lg:py-32 bg-background">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <h2 className="text-3xl font-bold tracking-tighter text-primary sm:text-4xl md:text-5xl">
+              {title}
+            </h2>
+            <p className="mt-4 text-foreground/80 md:text-xl">
+              {subtitle}
+            </p>
+          </motion.div>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          >
+            {plans.map((plan) => (
+              <motion.div key={plan.name} variants={itemVariants} className="h-full">
+                <Card
+                  className={cn(
+                    "flex flex-col h-full",
+                    plan.isPopular && "border-accent ring-2 ring-accent"
                   )}
-                  <CardTitle>{plan.name}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
-                  <div className="flex items-baseline pt-4">
-                    <span className="text-4xl font-bold tracking-tight">
-                      {plan.price}
-                    </span>
-                    {plan.period && <span className="ml-1 text-sm text-muted-foreground">{plan.period}</span>}
-                  </div>
-                </CardHeader>
-                <CardContent className="flex-1">
-                  <ul className="space-y-3">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start">
-                        <Check className="mr-3 h-5 w-5 flex-shrink-0 text-accent" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Button
-                    asChild
-                    className="w-full"
-                    variant={plan.isPopular ? "default" : "outline"}
-                  >
-                    <Link
-                      href={plan.link || '#'}
-                      target={plan.link?.startsWith('http') ? '_blank' : undefined}
-                      rel={plan.link?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    >
-                      {plan.cta}
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+                >
+                  <CardHeader className="relative">
+                    {plan.isPopular && (
+                      <Badge className="absolute top-[-10px] right-6">
+                        Most Popular
+                      </Badge>
+                    )}
+                    <CardTitle>{plan.name}</CardTitle>
+                    <CardDescription>{plan.description}</CardDescription>
+                    <div className="flex items-baseline pt-4">
+                      <span className="text-4xl font-bold tracking-tight">
+                        {plan.price}
+                      </span>
+                      {plan.period && <span className="ml-1 text-sm text-muted-foreground">{plan.period}</span>}
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex-1">
+                    <ul className="space-y-3">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start">
+                          <Check className="mr-3 h-5 w-5 flex-shrink-0 text-accent" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    {plan.action === 'link' ? (
+                       <Button
+                        asChild
+                        className="w-full"
+                        variant={plan.isPopular ? "default" : "outline"}
+                      >
+                         <Link
+                          href={plan.link || '#'}
+                          target={plan.link?.startsWith('http') ? '_blank' : undefined}
+                          rel={plan.link?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        >
+                          {plan.cta}
+                        </Link>
+                      </Button>
+                    ) : (
+                       <Button
+                        className="w-full"
+                        variant={plan.isPopular ? "default" : "outline"}
+                        onClick={() => setIsContactSalesOpen(true)}
+                      >
+                        {plan.cta}
+                      </Button>
+                    )}
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+      <ContactSalesDialog open={isContactSalesOpen} onOpenChange={setIsContactSalesOpen} />
+    </>
   );
 }

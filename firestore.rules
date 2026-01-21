@@ -10,6 +10,8 @@
  *   Firebase Authentication UID (e.g., /users/abc123xyz456).
  * - /content/{pageId}: Stores dynamic content for the website. This data is
  *   publicly readable but only writable by the admin.
+ * - /submissions/{submissionId}: Stores lead capture submissions. Writable by anyone,
+ *   readable only by the admin.
  *
  * Key Security Decisions:
  * - Admin Access: A specific user UID is granted admin privileges, allowing
@@ -17,6 +19,9 @@
  *   The admin also has exclusive write access to the /content collection.
  * - Public Read for Content: The /content collection is readable by anyone,
  *   allowing the public-facing website to display dynamic content.
+ * - Public Write for Submissions: The /submissions collection is writable by anyone
+ *   to allow unauthenticated users to submit the 'Contact Sales' form. Read access
+ *   is restricted to the admin.
  * - Disallow User Listing (for non-admins): It is not possible for regular
  *   users to query or list all documents in the `/users` collection. This is a
  *   critical privacy feature to prevent enumeration of the user base.
@@ -122,6 +127,20 @@ service cloud.firestore {
     match /content/{pageId} {
       allow get, list: if true;
       allow write: if isAdmin();
+    }
+
+    /**
+     * @description Manages form submissions, like leads.
+     * @path /submissions/{submissionId}
+     * @allow (create) Anyone can create a new submission (e.g., submit a form).
+     * @allow (read, list) Only the admin can read or list submissions.
+     * @deny (update, delete) No one can update or delete submissions.
+     * @principle Allows public write for lead capture while protecting submitted data.
+     */
+    match /submissions/{submissionId} {
+      allow create: if true;
+      allow read, list: if isAdmin();
+      allow update, delete: if false;
     }
   }
 }
