@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const lifecycleSteps = [
   {
@@ -57,7 +58,13 @@ export function Workflow() {
   return (
     <section id="features" className="w-full py-20 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="mx-auto max-w-3xl text-center space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-3xl text-center space-y-4"
+        >
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             A Glimpse Into the Ticket Lifecycle
           </h2>
@@ -65,8 +72,14 @@ export function Workflow() {
             Follow an incident from creation to resolution, powered by
             intelligent automation at every step.
           </p>
-        </div>
-        <div className="mt-12">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-12"
+        >
           <Carousel
             opts={{
               align: "start",
@@ -106,12 +119,18 @@ export function Workflow() {
             <CarouselPrevious className="hidden md:flex" />
             <CarouselNext className="hidden md:flex" />
           </Carousel>
-        </div>
-        <div className="mt-12 text-center">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 text-center"
+        >
             <Link href="/features">
                 <Button variant="outline">Show All Features</Button>
             </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

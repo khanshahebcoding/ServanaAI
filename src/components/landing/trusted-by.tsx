@@ -1,6 +1,15 @@
+'use client';
+import { motion } from 'framer-motion';
+
 export function TrustedBy() {
   return (
-    <section className="w-full py-12 md:py-16 lg:py-20">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="w-full py-12 md:py-16 lg:py-20"
+    >
       <div className="container mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold tracking-wider text-muted-foreground uppercase">
@@ -15,6 +24,6 @@ export function TrustedBy() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

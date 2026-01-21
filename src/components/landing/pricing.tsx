@@ -1,3 +1,4 @@
+'use client';
 import {
   Card,
   CardContent,
@@ -10,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const plans = [
   {
@@ -59,62 +61,97 @@ const plans = [
 ];
 
 export function Pricing() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section id="pricing" className="w-full py-20 md:py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-3xl text-center"
+        >
           <h2 className="text-3xl font-bold tracking-tighter text-primary sm:text-4xl md:text-5xl">
             Choose the Right Plan for Your Team
           </h2>
           <p className="mt-4 text-foreground/80 md:text-xl">
             Simple, transparent pricing that scales with you. No hidden fees.
           </p>
-        </div>
-        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        </motion.div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+        >
           {plans.map((plan) => (
-            <Card
-              key={plan.name}
-              className={cn(
-                "flex flex-col",
-                plan.isPopular && "border-accent ring-2 ring-accent"
-              )}
-            >
-              <CardHeader className="relative">
-                {plan.isPopular && (
-                  <Badge className="absolute top-[-10px] right-6">
-                    Most Popular
-                  </Badge>
+            <motion.div key={plan.name} variants={itemVariants} className="h-full">
+              <Card
+                className={cn(
+                  "flex flex-col h-full",
+                  plan.isPopular && "border-accent ring-2 ring-accent"
                 )}
-                <CardTitle>{plan.name}</CardTitle>
-                <CardDescription>{plan.description}</CardDescription>
-                <div className="flex items-baseline pt-4">
-                  <span className="text-4xl font-bold tracking-tight">
-                    {plan.price}
-                  </span>
-                  {plan.period && <span className="ml-1 text-sm text-muted-foreground">{plan.period}</span>}
-                </div>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <ul className="space-y-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start">
-                      <Check className="mr-3 h-5 w-5 flex-shrink-0 text-accent" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  className="w-full"
-                  variant={plan.isPopular ? "default" : "outline"}
-                >
-                  {plan.cta}
-                </Button>
-              </CardFooter>
-            </Card>
+              >
+                <CardHeader className="relative">
+                  {plan.isPopular && (
+                    <Badge className="absolute top-[-10px] right-6">
+                      Most Popular
+                    </Badge>
+                  )}
+                  <CardTitle>{plan.name}</CardTitle>
+                  <CardDescription>{plan.description}</CardDescription>
+                  <div className="flex items-baseline pt-4">
+                    <span className="text-4xl font-bold tracking-tight">
+                      {plan.price}
+                    </span>
+                    {plan.period && <span className="ml-1 text-sm text-muted-foreground">{plan.period}</span>}
+                  </div>
+                </CardHeader>
+                <CardContent className="flex-1">
+                  <ul className="space-y-3">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-start">
+                        <Check className="mr-3 h-5 w-5 flex-shrink-0 text-accent" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button
+                    className="w-full"
+                    variant={plan.isPopular ? "default" : "outline"}
+                  >
+                    {plan.cta}
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

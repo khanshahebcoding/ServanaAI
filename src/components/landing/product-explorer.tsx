@@ -1,13 +1,21 @@
+'use client';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { motion } from "framer-motion";
 
 const explorerImage = PlaceHolderImages.find((p) => p.id === "product-explorer");
 
 export function ProductExplorer() {
   return (
     <section id="documentation" className="w-full py-20 md:py-24 lg:py-32">
-      <div className="container mx-auto px-4 md:px-6">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="container mx-auto px-4 md:px-6"
+      >
         <div className="relative overflow-hidden rounded-2xl bg-primary text-primary-foreground">
           {explorerImage && (
             <Image
@@ -39,7 +47,7 @@ export function ProductExplorer() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -1,3 +1,4 @@
+'use client';
 import Image from "next/image";
 import {
   Accordion,
@@ -8,6 +9,7 @@ import {
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Database, Recycle, Bell, Network } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 
 const assetImage = PlaceHolderImages.find((p) => p.id === "asset-module");
 
@@ -36,10 +38,16 @@ const features = [
 
 export function AssetFeature() {
   return (
-    <section id="assets" className="w-full py-20 md:py-24 lg:py-32 bg-card">
+    <section id="assets" className="w-full py-20 md:py-24 lg:py-32 bg-card overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-24 items-center">
-          <div className="relative">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="relative"
+          >
             {assetImage && (
               <Image
                 src={assetImage.imageUrl}
@@ -50,8 +58,14 @@ export function AssetFeature() {
                 data-ai-hint={assetImage.imageHint}
               />
             )}
-          </div>
-          <div className="space-y-6">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="space-y-6"
+          >
             <div className="space-y-2">
                 <Badge variant="outline">Asset Module</Badge>
               <h2 className="text-3xl font-bold tracking-tighter text-primary sm:text-4xl">
@@ -77,7 +91,7 @@ export function AssetFeature() {
                     </AccordionItem>
                 ))}
             </Accordion>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

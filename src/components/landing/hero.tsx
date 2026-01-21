@@ -1,10 +1,12 @@
+'use client';
 import { Button } from "@/components/ui/button";
 import { DashboardMockup } from "./dashboard-mockup";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section id="home" className="relative w-full pt-24 md:pt-32 lg:pt-40 pb-20">
+    <section id="home" className="relative w-full pt-24 md:pt-32 lg:pt-40 pb-20 overflow-hidden">
       <div
         className="absolute inset-0 -z-10"
         style={{
@@ -13,7 +15,12 @@ export function Hero() {
         }}
       />
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center justify-center space-y-6 text-center"
+        >
           <div className="space-y-4">
             <Badge variant="secondary" className="rounded-full px-4 py-1 text-sm font-medium">
               Powered By ServanaAI
@@ -33,10 +40,15 @@ export function Hero() {
               Book a Demo
             </Button>
           </div>
-        </div>
-        <div className="relative mt-12 md:mt-20">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="relative mt-12 md:mt-20"
+        >
           <DashboardMockup />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

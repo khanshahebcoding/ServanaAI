@@ -65,14 +65,26 @@ export function IncidentManagement() {
     return (
         <section className="w-full py-20 md:py-24 lg:py-32 bg-slate-50">
             <div className="container mx-auto px-4 md:px-6">
-                <div className="text-center mb-12">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-center mb-12"
+                >
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-navy">Intelligent Incident Management</h2>
                     <p className="mt-4 text-lg text-gray-600">Follow a ticket's journey, powered by AI at every step. Click each stage to see it in action.</p>
-                </div>
+                </motion.div>
                 
-                <div className="mb-16">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="mb-16"
+                >
                     <LifecycleRibbon statuses={incidentSteps} currentStatusId={activeStatusId} setCurrentStatusId={setActiveStatusId} isInteractive={true} />
-                </div>
+                </motion.div>
                 
                 <div className="relative min-h-[500px] md:min-h-[400px] lg:min-h-[450px]">
                     <AnimatePresence mode="wait">
