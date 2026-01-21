@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
 import LifecycleRibbon from "./lifecycle-ribbon";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const defaultSteps = [
   {
@@ -12,21 +11,21 @@ const defaultSteps = [
     label: 'Branch Setup',
     title: 'Centralized Branch Management',
     description: 'Easily set up and manage all your office locations, like Banani and Farmgate, from a single, unified dashboard. Define branch-specific settings and users.',
-    imageId: 'org-branch-setup',
+    imageUrl: 'https://images.unsplash.com/photo-1622141103319-93dc297eb770?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8b3JnYW5pemF0aW9uJTIwYnJhbmNoJTIwc2V0dXB8ZW58MHx8fHwxNzY4NzM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
     id: 2,
     label: 'Dept. Mapping',
     title: 'Intuitive Department Structuring',
     description: 'Map departments like HR, IT, and Sales to specific branches. Assign employees and assets to departments for granular control and reporting.',
-    imageId: 'org-dept-mapping',
+    imageUrl: 'https://images.unsplash.com/photo-1621421770492-272ae6d7882a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkZXBhcnRtZW50JTIwbWFwcGluZyUyMHVpfGVufDB8fHx8MTc2ODczNDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
     id: 3,
     label: 'Vendor Sync',
     title: 'Integrated Vendor Ecosystem',
     description: "Maintain a live directory of your trusted suppliers and vendors, such as 'Computer Source'. Streamline procurement, repairs, and vendor-related communication.",
-    imageId: 'org-vendor-sync',
+    imageUrl: 'https://images.unsplash.com/photo-1635442962671-584193cdf451?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx2ZW5kb3IlMjBkaXJlY3RvcnklMjBsaXN0fGVufDB8fHx8MTc2ODczNDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080',
   }
 ];
 
@@ -48,7 +47,6 @@ export function EnterpriseMapping({ content: contentFromProps }: { content?: Ent
     const { title, subtitle, steps } = content;
 
     const activeStep = steps.find(step => step.id === activeStatusId);
-    const activeStepImage = activeStep ? PlaceHolderImages.find(p => p.id === activeStep.imageId) : null;
 
     return (
         <section className="w-full py-20 md:py-24 lg:py-32 bg-slate-50">
@@ -92,14 +90,13 @@ export function EnterpriseMapping({ content: contentFromProps }: { content?: Ent
                                 <div className="order-1 lg:order-2">
                                   <Card className="rounded-2xl shadow-2xl overflow-hidden bg-white/50 backdrop-blur-lg border-white/20">
                                       <CardContent className="p-0">
-                                          {activeStepImage && (
+                                          {activeStep.imageUrl && (
                                               <Image
-                                                  src={activeStepImage.imageUrl}
-                                                  alt={activeStepImage.description}
+                                                  src={activeStep.imageUrl}
+                                                  alt={activeStep.title}
                                                   width={800}
                                                   height={600}
                                                   className="object-cover w-full h-full"
-                                                  data-ai-hint={activeStepImage.imageHint}
                                               />
                                           )}
                                       </CardContent>

@@ -160,9 +160,9 @@
                         "label": { "type": "string" },
                         "title": { "type": "string" },
                         "description": { "type": "string" },
-                        "imageId": { "type": "string", "description": "ID of the image from placeholder-images.json" }
+                        "imageUrl": { "type": "string", "description": "URL of the image for the step." }
                     },
-                    "required": ["id", "label", "title", "description", "imageId"]
+                    "required": ["id", "label", "title", "description", "imageUrl"]
                 }
             }
         }

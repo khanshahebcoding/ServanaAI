@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
 import LifecycleRibbon from "./lifecycle-ribbon";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const defaultSteps = [
   {
@@ -12,21 +11,21 @@ const defaultSteps = [
     label: 'Stock In',
     title: 'Seamless Inventory Intake',
     description: 'Quickly add new hardware to your inventory using a streamlined form. Capture all essential details from day one, including purchase date, supplier, and initial value.',
-    imageId: 'asset-stock-in',
+    imageUrl: 'https://images.unsplash.com/photo-1636289799206-a77cd3a2044d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhc3NldCUyMGludmVudG9yeSUyMGZvcm18ZW58MHx8fHwxNzY4NzM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
     id: 2,
     label: 'Assign',
     title: 'Intelligent Asset Assignment',
     description: 'Assign devices to employees or departments with full traceability. View the complete assignment history for every asset and ensure accountability.',
-    imageId: 'asset-assigned',
+    imageUrl: 'https://images.unsplash.com/photo-1688287632190-071ae4b3a129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhc3NpZ25lZCUyMGFzc2V0cyUyMGxpc3R8ZW58MHx8fHwxNzY4NzM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
     id: 3,
     label: 'Warranty Audit',
     title: 'Proactive Warranty Guardian',
     description: "SupportEngine's AI continuously monitors your assets' warranty status. Receive automated alerts and reports before coverage expires, allowing you to plan renewals and avoid service gaps.",
-    imageId: 'asset-warranty-audit',
+    imageUrl: 'https://images.unsplash.com/photo-1618359920180-0beecbac1ea4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d2FycmFudHklMjBhdWRpdCUyMHJlcG9ydHxlbnwwfHx8fDE3Njg3MzQxODd8MA&ixlib=rb-4.1.0&q=80&w=1080',
   }
 ];
 
@@ -48,7 +47,6 @@ export function AssetLifecycle({ content: contentFromProps }: { content?: AssetL
     const { title, subtitle, steps } = content;
     
     const activeStep = steps.find(step => step.id === activeStatusId);
-    const activeStepImage = activeStep ? PlaceHolderImages.find(p => p.id === activeStep.imageId) : null;
 
     return (
         <section className="w-full py-20 md:py-24 lg:py-32">
@@ -92,14 +90,13 @@ export function AssetLifecycle({ content: contentFromProps }: { content?: AssetL
                                 <div className="order-1 lg:order-2">
                                   <Card className="rounded-2xl shadow-2xl overflow-hidden bg-white/50 backdrop-blur-lg border-white/20">
                                       <CardContent className="p-0">
-                                          {activeStepImage && (
+                                          {activeStep.imageUrl && (
                                               <Image
-                                                  src={activeStepImage.imageUrl}
-                                                  alt={activeStepImage.description}
+                                                  src={activeStep.imageUrl}
+                                                  alt={activeStep.title}
                                                   width={800}
                                                   height={600}
                                                   className="object-cover w-full h-full"
-                                                  data-ai-hint={activeStepImage.imageHint}
                                               />
                                           )}
                                       </CardContent>

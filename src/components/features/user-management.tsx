@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
 import LifecycleRibbon from "./lifecycle-ribbon";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const defaultSteps = [
   {
@@ -12,21 +11,21 @@ const defaultSteps = [
     label: 'Add User',
     title: 'Streamlined User Onboarding',
     description: 'Quickly add new team members to SupportEngine. Capture essential details and prepare their account for role and branch assignment in a single step.',
-    imageId: 'user-management-add-user',
+    imageUrl: 'https://images.unsplash.com/photo-1762340277682-abb579ffa03c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx1c2VyJTIwY3JlYXRpb24lMjBmb3JtfGVufDB8fHx8MTc2ODczNDE4OHww&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
     id: 2,
     label: 'Role Definition',
     title: 'Granular Role-Based Access Control',
     description: "Define user permissions with precision. Assign roles like 'Admin', 'Technician', or 'User' to control access to sensitive modules and data, ensuring security and compliance.",
-    imageId: 'user-management-role-definition',
+    imageUrl: 'https://picsum.photos/seed/um2/800/600',
   },
   {
     id: 3,
     label: 'Branch Access',
     title: 'Location-Specific Data Scoping',
     description: "Restrict user access to specific branches, like 'Banani' or 'Farmgate'. This ensures that team members only see the incidents, assets, and data relevant to their location.",
-    imageId: 'user-management-branch-access',
+    imageUrl: 'https://images.unsplash.com/photo-1616367157213-d7ee3548263d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YnJhbmNoJTIwYWNjZXNzJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc2ODczNDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080',
   }
 ];
 
@@ -48,7 +47,6 @@ export function UserManagement({ content: contentFromProps }: { content?: UserMa
     const { title, subtitle, steps } = content;
 
     const activeStep = steps.find(step => step.id === activeStatusId);
-    const activeStepImage = activeStep ? PlaceHolderImages.find(p => p.id === activeStep.imageId) : null;
 
     return (
         <section className="w-full py-20 md:py-24 lg:py-32">
@@ -92,14 +90,13 @@ export function UserManagement({ content: contentFromProps }: { content?: UserMa
                                 <div className="order-1 lg:order-2">
                                   <Card className="rounded-2xl shadow-2xl overflow-hidden bg-white/50 backdrop-blur-lg border-white/20">
                                       <CardContent className="p-0">
-                                          {activeStepImage && (
+                                          {activeStep.imageUrl && (
                                               <Image
-                                                  src={activeStepImage.imageUrl}
-                                                  alt={activeStepImage.description}
+                                                  src={activeStep.imageUrl}
+                                                  alt={activeStep.title}
                                                   width={800}
                                                   height={600}
                                                   className="object-cover w-full h-full"
-                                                  data-ai-hint={activeStepImage.imageHint}
                                               />
                                           )}
                                       </CardContent>

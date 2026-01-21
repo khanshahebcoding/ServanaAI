@@ -55,31 +55,31 @@ const homePageSections = [
 ];
 
 const incidentStepsDefault = [
-  { id: 1, label: 'Created', title: 'Submit a Ticket with Ease', description: 'Users can create new incidents through multiple channels, including a user-friendly web portal, email integration, or API. All details are captured in a structured format.', imageId: 'incident-created' },
-  { id: 2, label: 'Acknowledged', title: 'AI-Powered Triage & Acknowledgment', description: 'As soon as a ticket is created, SupportEngine\'s AI analyzes its content, categorizes it (e.g., Hardware, Software), and sends an automated acknowledgment to the user.', imageId: 'incident-acknowledged' },
-  { id: 3, label: 'Assigned', title: 'Intelligent Agent Assignment', description: 'The system automatically routes the ticket to the best-suited support agent or team based on skill set, current workload, and issue category, ensuring a fast and effective response.', imageId: 'incident-assigned' },
-  { id: 4, label: 'In Progress', title: 'Collaborative Resolution', description: 'Agents work on the ticket with a full suite of tools, including a real-time activity log, AI-powered suggestions, and integrated knowledge base access.', imageId: 'incident-in-progress' },
-  { id: 5, label: 'Resolved', title: 'Effective & Verified Solutions', description: 'Once the agent resolves the issue, the solution is logged, and the ticket is marked as resolved. The user is notified and can see a full summary of the actions taken.', imageId: 'incident-resolved' },
-  { id: 6, label: 'Pending Closure', title: 'Automated User Confirmation', description: 'To ensure user satisfaction, the system waits for a confirmation from the user that the issue is truly resolved before final closure, preventing premature ticket closing.', imageId: 'incident-pending-closure' },
-  { id: 7, label: 'Closed', title: 'Archived for Knowledge & Analytics', description: 'The fully resolved ticket is closed and archived. Its data contributes to the knowledge base and provides valuable insights for analytics and future AI improvements.', imageId: 'incident-closed' },
+  { id: 1, label: 'Created', title: 'Submit a Ticket with Ease', description: 'Users can create new incidents through multiple channels, including a user-friendly web portal, email integration, or API. All details are captured in a structured format.', imageUrl: 'https://images.unsplash.com/photo-1652018440238-1aeb20a803a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0aWNrZXQlMjBjcmVhdGlvbiUyMGZvcm18ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 2, label: 'Acknowledged', title: 'AI-Powered Triage & Acknowledgment', description: 'As soon as a ticket is created, SupportEngine\'s AI analyzes its content, categorizes it (e.g., Hardware, Software), and sends an automated acknowledgment to the user.', imageUrl: 'https://images.unsplash.com/photo-1643190919327-135c901c7385?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjB0aWNrZXQlMjBhY2tub3dsZWRnZWR8ZW58MHx8fHwxNzY4NzMzMDgzfDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 3, label: 'Assigned', title: 'Intelligent Agent Assignment', description: 'The system automatically routes the ticket to the best-suited support agent or team based on skill set, current workload, and issue category, ensuring a fast and effective response.', imageUrl: 'https://images.unsplash.com/photo-1703960525294-53f01e3546eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWNrZXQlMjBhc3NpZ25tZW50JTIwc2NyZWVufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 4, label: 'In Progress', title: 'Collaborative Resolution', description: 'Agents work on the ticket with a full suite of tools, including a real-time activity log, AI-powered suggestions, and integrated knowledge base access.', imageUrl: 'https://images.unsplash.com/photo-1638517304679-4fbf9341c33c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGlja2V0JTIwYWN0aXZpdHklMjBsb2d8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 5, label: 'Resolved', title: 'Effective & Verified Solutions', description: 'Once the agent resolves the issue, the solution is logged, and the ticket is marked as resolved. The user is notified and can see a full summary of the actions taken.', imageUrl: 'https://images.unsplash.com/photo-1731781275959-199c6705a9a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZXNvbHZlZCUyMHRpY2tldCUyMHZpZXd8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 6, label: 'Pending Closure', title: 'Automated User Confirmation', description: 'To ensure user satisfaction, the system waits for a confirmation from the user that the issue is truly resolved before final closure, preventing premature ticket closing.', imageUrl: 'https://images.unsplash.com/photo-1703960525294-53f01e3546eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWNrZXQlMjBjbG9zdXJlJTIwY29uZmlybWF0aW9ufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 7, label: 'Closed', title: 'Archived for Knowledge & Analytics', description: 'The fully resolved ticket is closed and archived. Its data contributes to the knowledge base and provides valuable insights for analytics and future AI improvements.', imageUrl: 'https://images.unsplash.com/photo-1757932520543-1806e2911cd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YXJjaGl2ZWQlMjB0aWNrZXQlMjBrbm93bGVkZ2ViYXNlfGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080' },
 ];
 
 const assetStepsDefault = [
-  { id: 1, label: 'Stock In', title: 'Seamless Inventory Intake', description: 'Quickly add new hardware to your inventory using a streamlined form. Capture all essential details from day one, including purchase date, supplier, and initial value.', imageId: 'asset-stock-in' },
-  { id: 2, label: 'Assign', title: 'Intelligent Asset Assignment', description: 'Assign devices to employees or departments with full traceability. View the complete assignment history for every asset and ensure accountability.', imageId: 'asset-assigned' },
-  { id: 3, label: 'Warranty Audit', title: 'Proactive Warranty Guardian', description: "SupportEngine's AI continuously monitors your assets' warranty status. Receive automated alerts and reports before coverage expires, allowing you to plan renewals and avoid service gaps.", imageId: 'asset-warranty-audit' },
+  { id: 1, label: 'Stock In', title: 'Seamless Inventory Intake', description: 'Quickly add new hardware to your inventory using a streamlined form. Capture all essential details from day one, including purchase date, supplier, and initial value.', imageUrl: 'https://images.unsplash.com/photo-1636289799206-a77cd3a2044d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhc3NldCUyMGludmVudG9yeSUyMGZvcm18ZW58MHx8fHwxNzY4NzM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 2, label: 'Assign', title: 'Intelligent Asset Assignment', description: 'Assign devices to employees or departments with full traceability. View the complete assignment history for every asset and ensure accountability.', imageUrl: 'https://images.unsplash.com/photo-1688287632190-071ae4b3a129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhc3NpZ25lZCUyMGFzc2V0cyUyMGxpc3R8ZW58MHx8fHwxNzY4NzM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 3, label: 'Warranty Audit', title: 'Proactive Warranty Guardian', description: "SupportEngine's AI continuously monitors your assets' warranty status. Receive automated alerts and reports before coverage expires, allowing you to plan renewals and avoid service gaps.", imageUrl: 'https://images.unsplash.com/photo-1618359920180-0beecbac1ea4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d2FycmFudHklMjBhdWRpdCUyMHJlcG9ydHxlbnwwfHx8fDE3Njg3MzQxODd8MA&ixlib=rb-4.1.0&q=80&w=1080' },
 ];
 
 const orgStepsDefault = [
-  { id: 1, label: 'Branch Setup', title: 'Centralized Branch Management', description: 'Easily set up and manage all your office locations, like Banani and Farmgate, from a single, unified dashboard. Define branch-specific settings and users.', imageId: 'org-branch-setup' },
-  { id: 2, label: 'Dept. Mapping', title: 'Intuitive Department Structuring', description: 'Map departments like HR, IT, and Sales to specific branches. Assign employees and assets to departments for granular control and reporting.', imageId: 'org-dept-mapping' },
-  { id: 3, label: 'Vendor Sync', title: 'Integrated Vendor Ecosystem', description: "Maintain a live directory of your trusted suppliers and vendors, such as 'Computer Source'. Streamline procurement, repairs, and vendor-related communication.", imageId: 'org-vendor-sync' },
+  { id: 1, label: 'Branch Setup', title: 'Centralized Branch Management', description: 'Easily set up and manage all your office locations, like Banani and Farmgate, from a single, unified dashboard. Define branch-specific settings and users.', imageUrl: 'https://images.unsplash.com/photo-1622141103319-93dc297eb770?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8b3JnYW5pemF0aW9uJTIwYnJhbmNoJTIwc2V0dXB8ZW58MHx8fHwxNzY4NzM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 2, label: 'Dept. Mapping', title: 'Intuitive Department Structuring', description: 'Map departments like HR, IT, and Sales to specific branches. Assign employees and assets to departments for granular control and reporting.', imageUrl: 'https://images.unsplash.com/photo-1621421770492-272ae6d7882a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkZXBhcnRtZW50JTIwbWFwcGluZyUyMHVpfGVufDB8fHx8MTc2ODczNDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 3, label: 'Vendor Sync', title: 'Integrated Vendor Ecosystem', description: "Maintain a live directory of your trusted suppliers and vendors, such as 'Computer Source'. Streamline procurement, repairs, and vendor-related communication.", imageUrl: 'https://images.unsplash.com/photo-1635442962671-584193cdf451?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx2ZW5kb3IlMjBkaXJlY3RvcnklMjBsaXN0fGVufDB8fHx8MTc2ODczNDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080' },
 ];
 
 const userStepsDefault = [
-  { id: 1, label: 'Add User', title: 'Streamlined User Onboarding', description: 'Quickly add new team members to SupportEngine. Capture essential details and prepare their account for role and branch assignment in a single step.', imageId: 'user-management-add-user' },
-  { id: 2, label: 'Role Definition', title: 'Granular Role-Based Access Control', description: "Define user permissions with precision. Assign roles like 'Admin', 'Technician', or 'User' to control access to sensitive modules and data, ensuring security and compliance.", imageId: 'user-management-role-definition' },
-  { id: 3, label: 'Branch Access', title: 'Location-Specific Data Scoping', description: "Restrict user access to specific branches, like 'Banani' or 'Farmgate'. This ensures that team members only see the incidents, assets, and data relevant to their location.", imageId: 'user-management-branch-access' },
+  { id: 1, label: 'Add User', title: 'Streamlined User Onboarding', description: 'Quickly add new team members to SupportEngine. Capture essential details and prepare their account for role and branch assignment in a single step.', imageUrl: 'https://images.unsplash.com/photo-1762340277682-abb579ffa03c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx1c2VyJTIwY3JlYXRpb24lMjBmb3JtfGVufDB8fHx8MTc2ODczNDE4OHww&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 2, label: 'Role Definition', title: 'Granular Role-Based Access Control', description: "Define user permissions with precision. Assign roles like 'Admin', 'Technician', or 'User' to control access to sensitive modules and data, ensuring security and compliance.", imageUrl: 'https://picsum.photos/seed/um2/800/600' },
+  { id: 3, label: 'Branch Access', title: 'Location-Specific Data Scoping', description: "Restrict user access to specific branches, like 'Banani' or 'Farmgate'. This ensures that team members only see the incidents, assets, and data relevant to their location.", imageUrl: 'https://images.unsplash.com/photo-1616367157213-d7ee3548263d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YnJhbmNoJTIwYWNjZXNzJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc2ODczNDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080' },
 ];
 
 
@@ -95,7 +95,7 @@ const featuresPageSections = [
 
 type Section = typeof homePageSections[0] | typeof featuresPageSections[0];
 type WorkflowStep = { icon: string; title: string; description: string; tags?: string[] };
-type FeatureStep = { id: number; label: string; title: string; description: string; imageId: string };
+type FeatureStep = { id: number; label: string; title: string; description: string; imageUrl: string };
 
 
 function EditContent() {
@@ -134,7 +134,7 @@ function EditContent() {
 
     const handleAddStep = () => {
         const newStep = selectedSection?.component === 'FeatureSectionWithSteps'
-          ? { id: (editedContent.steps?.length ?? 0) + 1, label: 'New Step', title: 'New Step Title', description: '', imageId: '' }
+          ? { id: (editedContent.steps?.length ?? 0) + 1, label: 'New Step', title: 'New Step Title', description: '', imageUrl: '' }
           : { icon: 'PlusCircle', title: 'New Step', description: '' };
 
         setEditedContent((prev: any) => ({
@@ -203,8 +203,8 @@ function EditContent() {
                         <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="col-span-3" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor={`step-imageId-${index}`} className="text-right">Image ID</Label>
-                        <Input id={`step-imageId-${index}`} value={step.imageId || ''} onChange={(e) => handleStepChange(index, 'imageId', e.target.value)} className="col-span-3" placeholder="e.g. incident-created"/>
+                        <Label htmlFor={`step-imageUrl-${index}`} className="text-right">Image Link</Label>
+                        <Input id={`step-imageUrl-${index}`} value={step.imageUrl || ''} onChange={(e) => handleStepChange(index, 'imageUrl', e.target.value)} className="col-span-3" placeholder="https://example.com/image.png"/>
                     </div>
                   </div>
                 ))}

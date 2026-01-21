@@ -4,16 +4,15 @@ import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
 import LifecycleRibbon from "./lifecycle-ribbon";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const defaultSteps = [
-  { id: 1, label: 'Created', title: 'Submit a Ticket with Ease', description: 'Users can create new incidents through multiple channels, including a user-friendly web portal, email integration, or API. All details are captured in a structured format.', imageId: 'incident-created' },
-  { id: 2, label: 'Acknowledged', title: 'AI-Powered Triage & Acknowledgment', description: 'As soon as a ticket is created, SupportEngine\'s AI analyzes its content, categorizes it (e.g., Hardware, Software), and sends an automated acknowledgment to the user.', imageId: 'incident-acknowledged' },
-  { id: 3, label: 'Assigned', title: 'Intelligent Agent Assignment', description: 'The system automatically routes the ticket to the best-suited support agent or team based on skill set, current workload, and issue category, ensuring a fast and effective response.', imageId: 'incident-assigned' },
-  { id: 4, label: 'In Progress', title: 'Collaborative Resolution', description: 'Agents work on the ticket with a full suite of tools, including a real-time activity log, AI-powered suggestions, and integrated knowledge base access.', imageId: 'incident-in-progress' },
-  { id: 5, label: 'Resolved', title: 'Effective & Verified Solutions', description: 'Once the agent resolves the issue, the solution is logged, and the ticket is marked as resolved. The user is notified and can see a full summary of the actions taken.', imageId: 'incident-resolved' },
-  { id: 6, label: 'Pending Closure', title: 'Automated User Confirmation', description: 'To ensure user satisfaction, the system waits for a confirmation from the user that the issue is truly resolved before final closure, preventing premature ticket closing.', imageId: 'incident-pending-closure' },
-  { id: 7, label: 'Closed', title: 'Archived for Knowledge & Analytics', description: 'The fully resolved ticket is closed and archived. Its data contributes to the knowledge base and provides valuable insights for analytics and future AI improvements.', imageId: 'incident-closed' },
+  { id: 1, label: 'Created', title: 'Submit a Ticket with Ease', description: 'Users can create new incidents through multiple channels, including a user-friendly web portal, email integration, or API. All details are captured in a structured format.', imageUrl: 'https://images.unsplash.com/photo-1652018440238-1aeb20a803a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0aWNrZXQlMjBjcmVhdGlvbiUyMGZvcm18ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 2, label: 'Acknowledged', title: 'AI-Powered Triage & Acknowledgment', description: 'As soon as a ticket is created, SupportEngine\'s AI analyzes its content, categorizes it (e.g., Hardware, Software), and sends an automated acknowledgment to the user.', imageUrl: 'https://images.unsplash.com/photo-1643190919327-135c901c7385?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjB0aWNrZXQlMjBhY2tub3dsZWRnZWR8ZW58MHx8fHwxNzY4NzMzMDgzfDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 3, label: 'Assigned', title: 'Intelligent Agent Assignment', description: 'The system automatically routes the ticket to the best-suited support agent or team based on skill set, current workload, and issue category, ensuring a fast and effective response.', imageUrl: 'https://images.unsplash.com/photo-1703960525294-53f01e3546eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWNrZXQlMjBhc3NpZ25tZW50JTIwc2NyZWVufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 4, label: 'In Progress', title: 'Collaborative Resolution', description: 'Agents work on the ticket with a full suite of tools, including a real-time activity log, AI-powered suggestions, and integrated knowledge base access.', imageUrl: 'https://images.unsplash.com/photo-1638517304679-4fbf9341c33c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGlja2V0JTIwYWN0aXZpdHklMjBsb2d8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 5, label: 'Resolved', title: 'Effective & Verified Solutions', description: 'Once the agent resolves the issue, the solution is logged, and the ticket is marked as resolved. The user is notified and can see a full summary of the actions taken.', imageUrl: 'https://images.unsplash.com/photo-1731781275959-199c6705a9a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZXNvbHZlZCUyMHRpY2tldCUyMHZpZXd8ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 6, label: 'Pending Closure', title: 'Automated User Confirmation', description: 'To ensure user satisfaction, the system waits for a confirmation from the user that the issue is truly resolved before final closure, preventing premature ticket closing.', imageUrl: 'https://images.unsplash.com/photo-1703960525294-53f01e3546eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aWNrZXQlMjBjbG9zdXJlJTIwY29uZmlybWF0aW9ufGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080' },
+  { id: 7, label: 'Closed', title: 'Archived for Knowledge & Analytics', description: 'The fully resolved ticket is closed and archived. Its data contributes to the knowledge base and provides valuable insights for analytics and future AI improvements.', imageUrl: 'https://images.unsplash.com/photo-1757932520543-1806e2911cd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YXJjaGl2ZWQlMjB0aWNrZXQlMjBrbm93bGVkZ2ViYXNlfGVufDB8fHx8MTc2ODczMzA4NHww&ixlib=rb-4.1.0&q=80&w=1080' },
 ];
 
 const defaultContent = {
@@ -34,7 +33,6 @@ export function IncidentManagement({ content: contentFromProps }: { content?: In
     const { title, subtitle, steps } = content;
 
     const activeStep = steps.find(step => step.id === activeStatusId);
-    const activeStepImage = activeStep ? PlaceHolderImages.find(p => p.id === activeStep.imageId) : null;
 
     return (
         <section className="w-full py-20 md:py-24 lg:py-32 bg-slate-50">
@@ -78,14 +76,13 @@ export function IncidentManagement({ content: contentFromProps }: { content?: In
                                 <div className="order-1 lg:order-2">
                                   <Card className="rounded-2xl shadow-2xl overflow-hidden bg-white/50 backdrop-blur-lg border-white/20">
                                       <CardContent className="p-0">
-                                          {activeStepImage && (
+                                          {activeStep.imageUrl && (
                                               <Image
-                                                  src={activeStepImage.imageUrl}
-                                                  alt={activeStepImage.description}
+                                                  src={activeStep.imageUrl}
+                                                  alt={activeStep.title}
                                                   width={800}
                                                   height={600}
                                                   className="object-cover w-full h-full"
-                                                  data-ai-hint={activeStepImage.imageHint}
                                               />
                                           )}
                                       </CardContent>
