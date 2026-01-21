@@ -1,32 +1,29 @@
 /**
- * Core Philosophy: This ruleset enforces a strict user-ownership model.
- * All user data is considered private and can only be accessed by the user
- * who owns it. The security model is path-based, meaning access control is
- * determined by matching the authenticated user's UID with the document ID
- * in the path.
+ * Core Philosophy: This ruleset enforces a strict user-ownership model,
+ * with a special exception for a designated admin user. All user data is
+ * considered private and can only be accessed by the user who owns it, or
+ * by the admin.
  *
  * Data Structure: All data is stored in a top-level `users` collection.
  * Each user has a single document, where the document ID is their unique
  * Firebase Authentication UID (e.g., /users/abc123xyz456).
  *
  * Key Security Decisions:
- * - Disallow User Listing: It is not possible to query or list all
- *   documents in the `/users` collection. This is a critical privacy feature
- *   to prevent enumeration of the user base.
- * - Strict Ownership: A user can only read, create, update, or delete their
- *   own user document. Access to other users' documents is denied.
+ * - Admin Access: A specific user UID is granted admin privileges, allowing
+ *   them to read, update, and delete any user's data, and to list all users.
+ * - Disallow User Listing (for non-admins): It is not possible for regular
+ *   users to query or list all documents in the `/users` collection. This is a
+ *   critical privacy feature to prevent enumeration of the user base.
+ * - Strict Ownership (for non-admins): A user can only read, create, update,
+ *   or delete their own user document. Access to other users' documents is denied.
  * - Self-Creation: A newly signed-in user is explicitly granted permission
  *   to create their own user document, establishing their presence in the
  *   database.
  *
  * Denormalization for Authorization: This model is simple and does not require
  * complex denormalization. The user's UID in the document path (`/users/{userId}`)
- * serves as the sole authorization key, eliminating the need for slow `get()`
+ * serves as the primary authorization key, eliminating the need for slow `get()`
  * calls to other documents.
- *
- * Structural Segregation: There are no public/private data mixes. The entire
- * `/users` collection is treated as private, with access segregated per-user
- * by the path-based rules.
  */
 rules_version = '2';
 service cloud.firestore {
@@ -41,6 +38,14 @@ service cloud.firestore {
      */
     function isSignedIn() {
       return request.auth != null;
+    }
+
+    /**
+     * Checks if the request is from the designated admin user.
+     */
+    function isAdmin() {
+      // UID for the admin account
+      return isSignedIn() && request.auth.uid == 'y4poDUkAStdmtsyUArHKXziEANn1';
     }
 
     /**
@@ -87,18 +92,18 @@ service cloud.firestore {
     /**
      * @description Manages private user profile documents.
      * @path /users/{userId}
-     * @allow (get) A user can read their own profile.
+     * @allow (get) A user can read their own profile. An admin can read any profile.
      * @allow (create) A new user can create their own profile document.
-     * @deny (list) No user can list all documents in the 'users' collection.
-     * @deny (get) A user cannot read another user's profile.
-     * @principle Restricts access to a user's own data tree.
+     * @allow (list) An admin can list all documents in the 'users' collection.
+     * @deny (get) A user cannot read another user's profile unless they are an admin.
+     * @principle Restricts access to a user's own data tree, with full access for admins.
      */
     match /users/{userId} {
-      allow get: if isOwner(userId);
-      allow list: if false;
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
       allow create: if isCreatingSelf(userId);
-      allow update: if isUpdatingSelf(userId);
-      allow delete: if isExistingOwner(userId);
+      allow update: if isUpdatingSelf(userId) || isAdmin();
+      allow delete: if isExistingOwner(userId) || isAdmin();
     }
   }
 }
