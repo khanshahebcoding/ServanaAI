@@ -44,7 +44,7 @@ const plans = [
     ],
     cta: "Start 14-day Trial",
     isPopular: true,
-    link: "/signup",
+    link: "https://app.supportengine.ai/login",
   },
   {
     name: "Enterprise",
