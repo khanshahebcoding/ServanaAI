@@ -1,0 +1,104 @@
+/**
+ * Core Philosophy: This ruleset enforces a strict user-ownership model.
+ * All user data is considered private and can only be accessed by the user
+ * who owns it. The security model is path-based, meaning access control is
+ * determined by matching the authenticated user's UID with the document ID
+ * in the path.
+ *
+ * Data Structure: All data is stored in a top-level `users` collection.
+ * Each user has a single document, where the document ID is their unique
+ * Firebase Authentication UID (e.g., /users/abc123xyz456).
+ *
+ * Key Security Decisions:
+ * - Disallow User Listing: It is not possible to query or list all
+ *   documents in the `/users` collection. This is a critical privacy feature
+ *   to prevent enumeration of the user base.
+ * - Strict Ownership: A user can only read, create, update, or delete their
+ *   own user document. Access to other users' documents is denied.
+ * - Self-Creation: A newly signed-in user is explicitly granted permission
+ *   to create their own user document, establishing their presence in the
+ *   database.
+ *
+ * Denormalization for Authorization: This model is simple and does not require
+ * complex denormalization. The user's UID in the document path (`/users/{userId}`)
+ * serves as the sole authorization key, eliminating the need for slow `get()`
+ * calls to other documents.
+ *
+ * Structural Segregation: There are no public/private data mixes. The entire
+ * `/users` collection is treated as private, with access segregated per-user
+ * by the path-based rules.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ----------------------------------------------------------------------
+    // Helper Functions
+    // ----------------------------------------------------------------------
+
+    /**
+     * Checks if a user is authenticated via Firebase Auth.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * Checks if the authenticated user's UID matches the document's userId.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * Confirms the document being changed already exists and the user is the owner.
+     * Crucial for secure update and delete operations.
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+
+    /**
+     * Validates a user creating their own user document.
+     * 1. The user must be the owner of the path.
+     * 2. The document's internal 'id' field MUST match the user's UID to
+     *    ensure relational integrity is established at creation.
+     */
+    function isCreatingSelf(userId) {
+      return isOwner(userId)
+          && request.resource.data.id == userId;
+    }
+
+    /**
+     * Validates a user updating their own user document.
+     * 1. The user must be the owner of the existing document.
+     * 2. The document's internal 'id' field MUST be immutable to prevent
+     *    the ownership link from being broken.
+     */
+    function isUpdatingSelf(userId) {
+      return isExistingOwner(userId)
+          && request.resource.data.id == resource.data.id;
+    }
+
+    // ----------------------------------------------------------------------
+    // Collection Rules
+    // ----------------------------------------------------------------------
+
+    /**
+     * @description Manages private user profile documents.
+     * @path /users/{userId}
+     * @allow (get) A user can read their own profile.
+     * @allow (create) A new user can create their own profile document.
+     * @deny (list) No user can list all documents in the 'users' collection.
+     * @deny (get) A user cannot read another user's profile.
+     * @principle Restricts access to a user's own data tree.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isCreatingSelf(userId);
+      allow update: if isUpdatingSelf(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+}

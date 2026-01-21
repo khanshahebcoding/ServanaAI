@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the ServanaAI Landing application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user entity."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the user."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the user."
+        },
+        "signUpDate": {
+          "type": "string",
+          "description": "Date and time the user signed up.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "firstName",
+        "lastName",
+        "signUpDate"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profile information.  The `userId` is the Firebase Authentication UID, ensuring path-based ownership.  All data under this path is private to the user.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Authentication UID of the user."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "This Firestore structure prioritizes security and scalability for the ServanaAI Landing application by adhering to the core design principles. It focuses on authorization independence, clarity, and predictable schema.\n\nAuthorization Independence:  The structure avoids `get()` calls in security rules by denormalizing authorization data where needed.  In this application, all user data is private, stored under `/users/{userId}`.  No collaborative data scenarios requiring denormalization of membership maps are present.\n\nStructural Segregation: Each collection maintains a homogeneous security posture. User-specific data is stored under their respective user ID.\n\nAccess Modeling: The structure uses path-based ownership (`/users/{userId}/...`) for private user data.  This makes security rules straightforward, based solely on `request.auth.uid`.\n\nData Clarity and Predictability:  The schema is explicit and predictable."
+  }
+}
