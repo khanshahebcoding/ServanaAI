@@ -164,7 +164,7 @@ export function BookADemoDialog({ open, onOpenChange }: BookADemoDialogProps) {
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel>Preferred Date</FormLabel>
-                    <Popover>
+                    <Popover modal={true}>
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
