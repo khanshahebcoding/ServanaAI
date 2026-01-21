@@ -7,29 +7,18 @@ import { getFirestore } from 'firebase/firestore'
 
 // IMPORTANT: DO NOT MODIFY THIS FUNCTION
 export function initializeFirebase() {
-  if (!getApps().length) {
-    let firebaseApp;
-    // When deployed to Firebase App Hosting, the config is provided automatically.
-    // In a local development environment, we fall back to the config object.
-    if (process.env.NODE_ENV === 'production') {
-      try {
-        // In a production environment (like App Hosting), initialize without config.
-        firebaseApp = initializeApp();
-      } catch (e) {
-        // This is a fallback for production-like environments that are not App Hosting.
-        console.warn('Automatic Firebase initialization failed. Falling back to config object.', e);
-        firebaseApp = initializeApp(firebaseConfig);
-      }
-    } else {
-      // In a development environment, always use the config object.
-      firebaseApp = initializeApp(firebaseConfig);
-    }
-
-    return getSdks(firebaseApp);
+  if (getApps().length) {
+    return getSdks(getApp());
   }
 
-  // If already initialized, return the SDKs with the already initialized App
-  return getSdks(getApp());
+  // process.env.FIREBASE_CONFIG is a special variable set by Firebase App Hosting.
+  // If it exists, we can initialize without arguments.
+  // Otherwise, we're in a local dev or other hosting environment and must use the config file.
+  const app = process.env.FIREBASE_CONFIG
+    ? initializeApp()
+    : initializeApp(firebaseConfig);
+    
+  return getSdks(app);
 }
 
 export function getSdks(firebaseApp: FirebaseApp) {
