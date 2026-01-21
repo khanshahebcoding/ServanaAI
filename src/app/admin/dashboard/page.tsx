@@ -8,7 +8,7 @@ import Link from "next/link";
 
 // Mock data, to be replaced with Firestore data
 const pages = [
-  { id: 'home', name: 'Home Page', sections: 5 },
+  { id: 'home', name: 'Home Page', sections: 6 },
   { id: 'features', name: 'Features Page', sections: 7 },
   { id: 'pricing', name: 'Pricing Page', sections: 1 },
 ];
