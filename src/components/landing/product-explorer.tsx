@@ -6,7 +6,13 @@ import { motion } from "framer-motion";
 
 const explorerImage = PlaceHolderImages.find((p) => p.id === "product-explorer");
 
-export function ProductExplorer() {
+interface ProductExplorerContent {
+  title: string;
+}
+
+export function ProductExplorer({ content }: { content?: ProductExplorerContent }) {
+  const title = content?.title || "Explore SupportEngine in Action";
+
   return (
     <section id="documentation" className="w-full py-20 md:py-24 lg:py-32">
       <motion.div
@@ -29,7 +35,7 @@ export function ProductExplorer() {
           <div className="relative z-10 grid gap-8 p-8 md:p-16 lg:grid-cols-2">
             <div className="space-y-6">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Explore SupportEngine in Action
+                {title}
               </h2>
               <p className="max-w-[600px] text-lg text-primary-foreground/80 md:text-xl">
                 Words can only say so much. See for yourself how SupportEngine can

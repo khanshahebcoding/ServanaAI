@@ -36,7 +36,15 @@ const features = [
     }
 ]
 
-export function AssetFeature() {
+interface AssetFeatureContent {
+    title: string;
+    subtitle: string;
+}
+
+export function AssetFeature({ content }: { content?: AssetFeatureContent }) {
+  const title = content?.title || "Complete Visibility and Control Over Your IT Assets";
+  const subtitle = content?.subtitle || "SupportEngine's Asset Module provides a holistic view of your entire IT landscape. Go beyond simple tracking to unlock strategic insights and operational efficiency.";
+
   return (
     <section id="assets" className="w-full py-20 md:py-24 lg:py-32 bg-card overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
@@ -69,11 +77,10 @@ export function AssetFeature() {
             <div className="space-y-2">
                 <Badge variant="outline">Asset Module</Badge>
               <h2 className="text-3xl font-bold tracking-tighter text-primary sm:text-4xl">
-                Complete Visibility and Control Over Your IT Assets
+                {title}
               </h2>
               <p className="text-lg text-foreground/80">
-                SupportEngine's Asset Module provides a holistic view of your entire IT landscape. 
-                Go beyond simple tracking to unlock strategic insights and operational efficiency.
+                {subtitle}
               </p>
             </div>
              <Accordion type="single" collapsible defaultValue="item-0" className="w-full">

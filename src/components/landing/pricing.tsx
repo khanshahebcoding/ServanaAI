@@ -60,7 +60,15 @@ const plans = [
   },
 ];
 
-export function Pricing() {
+interface PricingContent {
+  title: string;
+  subtitle: string;
+}
+
+export function Pricing({ content }: { content?: PricingContent }) {
+  const title = content?.title || "Choose the Right Plan for Your Team";
+  const subtitle = content?.subtitle || "Simple, transparent pricing that scales with you. No hidden fees.";
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -94,10 +102,10 @@ export function Pricing() {
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-3xl font-bold tracking-tighter text-primary sm:text-4xl md:text-5xl">
-            Choose the Right Plan for Your Team
+            {title}
           </h2>
           <p className="mt-4 text-foreground/80 md:text-xl">
-            Simple, transparent pricing that scales with you. No hidden fees.
+            {subtitle}
           </p>
         </motion.div>
         <motion.div

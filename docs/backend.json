@@ -36,6 +36,65 @@
         "lastName",
         "signUpDate"
       ]
+    },
+    "PageContent": {
+      "title": "Page Content",
+      "type": "object",
+      "description": "Stores dynamic content for website pages.",
+      "properties": {
+        "hero": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            }
+          }
+        },
+        "workflow": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            }
+          }
+        },
+        "assetFeature": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            }
+          }
+        },
+        "pricing": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            }
+          }
+        },
+        "productExplorer": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            }
+          }
+        }
+      }
     }
   },
   "auth": {
@@ -61,8 +120,18 @@
             }
           ]
         }
+      },
+      {
+        "path": "/content/{pageId}",
+        "definition": {
+          "entityName": "PageContent",
+          "schema": {
+            "$ref": "#/backend/entities/PageContent"
+          },
+          "description": "Stores dynamic content for pages like the homepage. Publicly readable, admin writable."
+        }
       }
     ],
-    "reasoning": "This Firestore structure prioritizes security and scalability for the ServanaAI Landing application by adhering to the core design principles. It focuses on authorization independence, clarity, and predictable schema.\n\nAuthorization Independence:  The structure avoids `get()` calls in security rules by denormalizing authorization data where needed.  In this application, all user data is private, stored under `/users/{userId}`.  No collaborative data scenarios requiring denormalization of membership maps are present.\n\nStructural Segregation: Each collection maintains a homogeneous security posture. User-specific data is stored under their respective user ID.\n\nAccess Modeling: The structure uses path-based ownership (`/users/{userId}/...`) for private user data.  This makes security rules straightforward, based solely on `request.auth.uid`.\n\nData Clarity and Predictability:  The schema is explicit and predictable."
+    "reasoning": "This Firestore structure prioritizes security and scalability for the ServanaAI Landing application by adhering to the core design principles. It focuses on authorization independence, clarity, and predictable schema.\n\nAuthorization Independence:  The structure avoids `get()` calls in security rules by denormalizing authorization data where needed.  In this application, all user data is private, stored under `/users/{userId}`.  No collaborative data scenarios requiring denormalization of membership maps are present.\n\nStructural Segregation: Each collection maintains a homogeneous security posture. User-specific data is stored under their respective user ID. Content data is stored in its own collection with different security rules.\n\nAccess Modeling: The structure uses path-based ownership (`/users/{userId}/...`) for private user data. This makes security rules straightforward, based solely on `request.auth.uid`. Content is publicly readable but only writable by an admin.\n\nData Clarity and Predictability:  The schema is explicit and predictable."
   }
 }

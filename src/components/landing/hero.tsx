@@ -4,7 +4,15 @@ import { DashboardMockup } from "./dashboard-mockup";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 
-export function Hero() {
+interface HeroContent {
+  title: string;
+  subtitle: string;
+}
+
+export function Hero({ content }: { content?: HeroContent }) {
+  const title = content?.title || "Revolutionize Your IT Support with SupportEngine";
+  const subtitle = content?.subtitle || "SupportEngine integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.";
+  
   return (
     <section id="home" className="relative w-full pt-24 md:pt-32 lg:pt-40 pb-20 overflow-hidden">
       <div
@@ -26,10 +34,10 @@ export function Hero() {
               Powered By ServanaAI
             </Badge>
             <h1 className="text-4xl font-extrabold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Revolutionize Your IT Support with SupportEngine
+              {title}
             </h1>
             <p className="mx-auto max-w-[700px] text-lg text-foreground/80 md:text-xl">
-              SupportEngine integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.
+              {subtitle}
             </p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row">

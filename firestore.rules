@@ -4,13 +4,19 @@
  * considered private and can only be accessed by the user who owns it, or
  * by the admin.
  *
- * Data Structure: All data is stored in a top-level `users` collection.
- * Each user has a single document, where the document ID is their unique
- * Firebase Authentication UID (e.g., /users/abc123xyz456).
+ * Data Structure: 
+ * - /users/{userId}: All user data is stored in a top-level `users` collection.
+ *   Each user has a single document, where the document ID is their unique
+ *   Firebase Authentication UID (e.g., /users/abc123xyz456).
+ * - /content/{pageId}: Stores dynamic content for the website. This data is
+ *   publicly readable but only writable by the admin.
  *
  * Key Security Decisions:
  * - Admin Access: A specific user UID is granted admin privileges, allowing
  *   them to read, update, and delete any user's data, and to list all users.
+ *   The admin also has exclusive write access to the /content collection.
+ * - Public Read for Content: The /content collection is readable by anyone,
+ *   allowing the public-facing website to display dynamic content.
  * - Disallow User Listing (for non-admins): It is not possible for regular
  *   users to query or list all documents in the `/users` collection. This is a
  *   critical privacy feature to prevent enumeration of the user base.
@@ -104,6 +110,18 @@ service cloud.firestore {
       allow create: if isCreatingSelf(userId);
       allow update: if isUpdatingSelf(userId) || isAdmin();
       allow delete: if isExistingOwner(userId) || isAdmin();
+    }
+    
+    /**
+     * @description Manages dynamic website content.
+     * @path /content/{pageId}
+     * @allow (read) Publicly readable by anyone to display on the website.
+     * @allow (write) Writable only by the admin user.
+     * @principle Separates public content from private user data with distinct access rules.
+     */
+    match /content/{pageId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
   }
 }

@@ -2,7 +2,7 @@
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import Link from "next/link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -17,8 +17,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useFirestore, useDoc, useMemoFirebase, setDocumentNonBlocking } from '@/firebase';
+import { doc } from 'firebase/firestore';
 
-// Mock data, to be replaced with Firestore data
 const pages = [
   { id: 'home', name: 'Home Page', sections: 6 },
   { id: 'features', name: 'Features Page', sections: 7 },
@@ -27,10 +28,10 @@ const pages = [
 
 const homePageSections = [
   { id: 'hero', name: 'Hero Section', component: 'Hero', content: { title: 'Revolutionize Your IT Support with SupportEngine', subtitle: 'SupportEngine integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.' } },
-  { id: 'trusted-by', name: 'Trusted By', component: 'TrustedBy', content: { title: 'Trusted by innovative companies worldwide' } },
-  { id: 'workflow', name: 'Workflow', component: 'Workflow', content: { title: 'A Glimpse Into the Ticket Lifecycle' } },
-  { id: 'asset-feature', name: 'Asset Module', component: 'AssetFeature', content: { title: 'Complete Visibility and Control Over Your IT Assets' } },
-  { id: 'pricing', name: 'Pricing', component: 'Pricing', content: { title: 'Choose the Right Plan for Your Team' } },
+  { id: 'trusted-by', name: 'Trusted By', component: 'TrustedBy', content: {} },
+  { id: 'workflow', name: 'Workflow', component: 'Workflow', content: { title: 'A Glimpse Into the Ticket Lifecycle', subtitle: "Follow an incident from creation to resolution, powered by intelligent automation at every step." } },
+  { id: 'asset-feature', name: 'Asset Module', component: 'AssetFeature', content: { title: 'Complete Visibility and Control Over Your IT Assets', subtitle: "SupportEngine's Asset Module provides a holistic view of your entire IT landscape." } },
+  { id: 'pricing', name: 'Pricing', component: 'Pricing', content: { title: 'Choose the Right Plan for Your Team', subtitle: 'Simple, transparent pricing that scales with you. No hidden fees.' } },
   { id: 'product-explorer', name: 'Product Explorer', component: 'ProductExplorer', content: { title: 'Explore SupportEngine in Action' } },
 ];
 
@@ -40,13 +41,61 @@ function EditContent() {
     const searchParams = useSearchParams();
     const pageId = searchParams.get('page');
     const page = pages.find(p => p.id === pageId);
+
+    const firestore = useFirestore();
+    const contentDocRef = useMemoFirebase(() => (firestore && pageId) ? doc(firestore, 'content', pageId) : null, [firestore, pageId]);
+    const { data: pageContent, isLoading } = useDoc<any>(contentDocRef);
+
     const [selectedSection, setSelectedSection] = useState<Section | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [editedContent, setEditedContent] = useState<any>({});
 
     const handleEditClick = (section: Section) => {
         setSelectedSection(section);
+        const currentContent = pageContent?.[section.id] ?? section.content;
+        setEditedContent(currentContent);
         setIsDialogOpen(true);
     };
+
+    const handleInputChange = (field: string, value: string) => {
+        setEditedContent((prev: any) => ({ ...prev, [field]: value }));
+    };
+
+    const handleSaveChanges = () => {
+        if (!contentDocRef || !selectedSection) return;
+
+        const dataToUpdate = {
+            [selectedSection.id]: editedContent
+        };
+
+        setDocumentNonBlocking(contentDocRef, dataToUpdate, { merge: true });
+
+        setIsDialogOpen(false);
+    };
+
+    const renderFormFields = () => {
+      if (!selectedSection) return null;
+
+      const contentToEdit = editedContent || {};
+      const fields = Object.keys(selectedSection.content || {});
+
+      if (fields.length === 0) {
+        return <p>This section has no editable content.</p>
+      }
+
+      return fields.map((key) => (
+         <div key={key} className="grid grid-cols-4 items-start gap-4">
+              <Label htmlFor={key} className="text-right pt-2 capitalize">
+                  {key.replace(/([A-Z])/g, ' $1')}
+              </Label>
+              {key.includes('subtitle') || key.includes('description') || key.includes('content') ? (
+                  <Textarea id={key} value={contentToEdit[key] || ''} onChange={(e) => handleInputChange(key, e.target.value)} className="col-span-3" />
+              ) : (
+                  <Input id={key} value={contentToEdit[key] || ''} onChange={(e) => handleInputChange(key, e.target.value)} className="col-span-3" />
+              )}
+          </div>
+      ))
+    }
 
     return (
         <>
@@ -56,7 +105,13 @@ function EditContent() {
                     {page && <CardDescription>Here you can modify the content of each section.</CardDescription>}
                 </CardHeader>
                 <CardContent>
-                    {page ? (
+                    {isLoading ? (
+                        <div className="space-y-2">
+                            <Skeleton className="h-8 w-full" />
+                            <Skeleton className="h-8 w-full" />
+                            <Skeleton className="h-8 w-full" />
+                        </div>
+                    ) : page ? (
                         <div>
                             {page.id === 'home' ? (
                                 <Table>
@@ -69,6 +124,7 @@ function EditContent() {
                                     </TableHeader>
                                     <TableBody>
                                         {homePageSections.map((section) => (
+                                            section.id !== 'trusted-by' &&
                                             <TableRow key={section.id}>
                                                 <TableCell className="font-medium">{section.name}</TableCell>
                                                 <TableCell>
@@ -100,25 +156,10 @@ function EditContent() {
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                            {selectedSection.content?.title && (
-                                <div className="grid grid-cols-4 items-center gap-4">
-                                    <Label htmlFor="title" className="text-right">
-                                        Title
-                                    </Label>
-                                    <Input id="title" defaultValue={selectedSection.content.title} className="col-span-3" />
-                                </div>
-                            )}
-                            {selectedSection.content?.subtitle && (
-                                <div className="grid grid-cols-4 items-center gap-4">
-                                    <Label htmlFor="subtitle" className="text-right">
-                                        Subtitle
-                                    </Label>
-                                    <Textarea id="subtitle" defaultValue={selectedSection.content.subtitle} className="col-span-3" />
-                                </div>
-                            )}
+                           {renderFormFields()}
                         </div>
                         <DialogFooter>
-                            <Button type="submit" onClick={() => setIsDialogOpen(false)}>Save changes</Button>
+                            <Button type="submit" onClick={handleSaveChanges}>Save changes</Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
