@@ -18,7 +18,15 @@ const stockData = [
     { item: "MacBook Pro 16", status: "Out of Stock", quantity: 0 },
 ];
 
-export function Analytics() {
+interface AnalyticsContent {
+  title: string;
+  subtitle: string;
+}
+
+export function Analytics({ content }: { content?: AnalyticsContent }) {
+    const title = content?.title || "Analytics & Reporting";
+    const subtitle = content?.subtitle || "Gain deep insights into your IT operations.";
+
     return (
         <section className="w-full py-20 md:py-24 lg:py-32 bg-slate-50">
             <div className="container mx-auto px-4 md:px-6">
@@ -29,8 +37,8 @@ export function Analytics() {
                     transition={{ duration: 0.5 }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-navy">Analytics & Reporting</h2>
-                    <p className="mt-4 text-lg text-gray-600">Gain deep insights into your IT operations.</p>
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-navy">{title}</h2>
+                    <p className="mt-4 text-lg text-gray-600">{subtitle}</p>
                 </motion.div>
 
                 <div className="grid gap-8 lg:grid-cols-2">

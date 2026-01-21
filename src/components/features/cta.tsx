@@ -2,7 +2,15 @@
 import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
 
-export function Cta() {
+interface CtaContent {
+  title: string;
+  subtitle: string;
+}
+
+export function Cta({ content }: { content?: CtaContent }) {
+  const title = content?.title || "Ready to Revolutionize Your IT?";
+  const subtitle = content?.subtitle || "Schedule a personalized demo to see how SupportEngine can empower your IT infrastructure.";
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -13,10 +21,10 @@ export function Cta() {
     >
       <div className="container mx-auto px-4 md:px-6 text-center text-primary-foreground">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Ready to Revolutionize Your IT?
+          {title}
         </h2>
         <p className="mt-4 mx-auto max-w-xl text-lg text-primary-foreground/80">
-          Schedule a personalized demo to see how SupportEngine can empower your IT infrastructure.
+          {subtitle}
         </p>
         <div className="mt-8">
           <Button size="lg" variant="secondary">

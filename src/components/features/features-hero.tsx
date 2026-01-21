@@ -7,7 +7,15 @@ import { motion } from "framer-motion";
 
 const heroImage = PlaceHolderImages.find((p) => p.id === "user-dashboard");
 
-export function FeaturesHero() {
+interface FeaturesHeroContent {
+  title: string;
+  subtitle: string;
+}
+
+export function FeaturesHero({ content }: { content?: FeaturesHeroContent }) {
+  const title = content?.title || "AI-Driven ITSM: Empowering Your IT Infrastructure with SupportEngine.";
+  const subtitle = content?.subtitle || "From automated incident resolution to intelligent asset lifecycle tracking, experience the future of service management.";
+  
   return (
     <section className="w-full pt-24 md:pt-32 lg:pt-40 pb-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
@@ -19,10 +27,10 @@ export function FeaturesHero() {
         >
           <div className="space-y-4">
             <h1 className="text-4xl font-extrabold tracking-tighter text-navy sm:text-5xl md:text-6xl lg:text-7xl">
-              AI-Driven ITSM: Empowering Your IT Infrastructure with SupportEngine.
+              {title}
             </h1>
             <p className="mx-auto max-w-[800px] text-lg text-gray-600 md:text-xl">
-              From automated incident resolution to intelligent asset lifecycle tracking, experience the future of service management.
+              {subtitle}
             </p>
           </div>
           <motion.div

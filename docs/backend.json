@@ -122,8 +122,50 @@
               "type": "string"
             }
           }
+        },
+        "featuresHero": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "subtitle": { "type": "string" }
+          }
+        },
+        "incidentManagement": { "$ref": "#/entities/FeatureSectionWithSteps" },
+        "assetLifecycle": { "$ref": "#/entities/FeatureSectionWithSteps" },
+        "enterpriseMapping": { "$ref": "#/entities/FeatureSectionWithSteps" },
+        "userManagement": { "$ref": "#/entities/FeatureSectionWithSteps" },
+        "analytics": {
+            "type": "object",
+            "properties": { "title": { "type": "string" }, "subtitle": { "type": "string" } }
+        },
+        "cta": {
+            "type": "object",
+            "properties": { "title": { "type": "string" }, "subtitle": { "type": "string" } }
         }
       }
+    },
+     "FeatureSectionWithSteps": {
+        "title": "Feature Section With Steps",
+        "type": "object",
+        "description": "Represents a section on the features page that has a title, subtitle, and a series of steps.",
+        "properties": {
+            "title": { "type": "string" },
+            "subtitle": { "type": "string" },
+            "steps": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": { "type": "number" },
+                        "label": { "type": "string" },
+                        "title": { "type": "string" },
+                        "description": { "type": "string" },
+                        "imageId": { "type": "string", "description": "ID of the image from placeholder-images.json" }
+                    },
+                    "required": ["id", "label", "title", "description", "imageId"]
+                }
+            }
+        }
     }
   },
   "auth": {
