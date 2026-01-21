@@ -178,6 +178,15 @@
         "contactNumber": { "type": "string", "description": "Contact number of the person." },
         "company": { "type": "string" },
         "message": { "type": "string" },
+        "appointmentDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Preferred date for an appointment or demo."
+        },
+        "appointmentTime": {
+          "type": "string",
+          "description": "Preferred time for an appointment or demo."
+        },
         "submittedAt": { "type": "string", "format": "date-time" }
       },
       "required": ["formName", "email", "submittedAt"]

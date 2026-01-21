@@ -73,6 +73,18 @@ export default function SubmissionDetailPage() {
                                 <p className="font-semibold">{submission.company || 'N/A'}</p>
                             </div>
                         </div>
+                         {submission.appointmentDate && (
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-1">
+                                    <p className="text-sm font-medium text-muted-foreground">Preferred Date</p>
+                                    <p className="font-semibold">{submission.appointmentDate}</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-sm font-medium text-muted-foreground">Preferred Time</p>
+                                    <p className="font-semibold">{submission.appointmentTime}</p>
+                                </div>
+                            </div>
+                        )}
                         <div className="space-y-1">
                             <p className="text-sm font-medium text-muted-foreground">Message</p>
                             <p className="font-semibold whitespace-pre-wrap">{submission.message || 'N/A'}</p>

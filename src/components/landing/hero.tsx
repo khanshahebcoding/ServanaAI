@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ContactSalesDialog } from "./contact-sales-dialog";
+import { BookADemoDialog } from "./book-demo-dialog";
 
 interface HeroContent {
   title: string;
@@ -13,6 +14,7 @@ interface HeroContent {
 
 export function Hero({ content }: { content?: HeroContent }) {
   const [isContactSalesOpen, setIsContactSalesOpen] = useState(false);
+  const [isBookDemoOpen, setIsBookDemoOpen] = useState(false);
   const title = content?.title || "Revolutionize Your IT Support with SupportEngine";
   const subtitle = content?.subtitle || "SupportEngine integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.";
   
@@ -48,7 +50,7 @@ export function Hero({ content }: { content?: HeroContent }) {
               <Button size="lg" className="sm:w-auto" onClick={() => setIsContactSalesOpen(true)}>
                 Get Started
               </Button>
-              <Button size="lg" variant="outline" className="sm:w-auto bg-white" onClick={() => setIsContactSalesOpen(true)}>
+              <Button size="lg" variant="outline" className="sm:w-auto bg-white" onClick={() => setIsBookDemoOpen(true)}>
                 Book a Demo
               </Button>
             </div>
@@ -64,6 +66,7 @@ export function Hero({ content }: { content?: HeroContent }) {
         </div>
       </section>
       <ContactSalesDialog open={isContactSalesOpen} onOpenChange={setIsContactSalesOpen} />
+      <BookADemoDialog open={isBookDemoOpen} onOpenChange={setIsBookDemoOpen} />
     </>
   );
 }
