@@ -29,6 +29,8 @@ const navLinksData = [
   { href: "#documentation", label: "Documentation" },
 ];
 
+const ADMIN_UID = 'y4poDUkAStdmtsyUArHKXziEANn1';
+
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const pathname = usePathname();
@@ -48,6 +50,14 @@ export function Navbar() {
       router.push('/');
     } catch (error) {
       console.error("Error signing out: ", error);
+    }
+  };
+  
+  const handleDashboardClick = () => {
+    if (user && user.uid === ADMIN_UID) {
+      router.push('/admin/dashboard');
+    } else {
+      router.push('/dashboard');
     }
   };
 
@@ -122,7 +132,7 @@ export function Navbar() {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => router.push('/dashboard')}>
+                <DropdownMenuItem onClick={handleDashboardClick}>
                   <LayoutDashboard className="mr-2 h-4 w-4" />
                   <span>Dashboard</span>
                 </DropdownMenuItem>

@@ -25,6 +25,8 @@ const formSchema = z.object({
   password: z.string().min(1, { message: 'Password is required.' }),
 });
 
+const ADMIN_UID = 'y4poDUkAStdmtsyUArHKXziEANn1';
+
 export default function LoginPage() {
   const auth = useAuth();
   const router = useRouter();
@@ -40,8 +42,14 @@ export default function LoginPage() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await signInWithEmailAndPassword(auth, values.email, values.password);
-      router.push('/');
+      const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
+      const user = userCredential.user;
+
+      if (user.uid === ADMIN_UID) {
+        router.push('/admin/dashboard');
+      } else {
+        router.push('/');
+      }
     } catch (error: any) {
       toast({
         variant: 'destructive',
