@@ -202,9 +202,38 @@ function EditContent() {
                         <Label htmlFor={`step-desc-${index}`} className="md:text-right pt-2">Description</Label>
                         <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="md:col-span-3" />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-4">
-                        <Label htmlFor={`step-imageUrl-${index}`} className="md:text-right">Image Link</Label>
-                        <Input id={`step-imageUrl-${index}`} value={step.imageUrl || ''} onChange={(e) => handleStepChange(index, 'imageUrl', e.target.value)} className="md:col-span-3" placeholder="https://example.com/image.png"/>
+                    <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
+                        <Label htmlFor={`step-image-${index}`} className="md:text-right pt-2">Image</Label>
+                        <div className="md:col-span-3">
+                            <Input 
+                                id={`step-image-${index}`}
+                                type="file"
+                                accept="image/*"
+                                className="mb-2"
+                                onChange={(e) => {
+                                    const file = e.target.files?.[0];
+                                    if (file) {
+                                        if (file.size > 1024 * 1024) {
+                                            alert('File is too large. Please select an image under 1MB.');
+                                            e.target.value = '';
+                                            return;
+                                        }
+                                        const reader = new FileReader();
+                                        reader.onload = (readEvent) => {
+                                            handleStepChange(index, 'imageUrl', readEvent.target?.result as string);
+                                        };
+                                        reader.readAsDataURL(file);
+                                    }
+                                }}
+                            />
+                            {editedContent.steps?.[index]?.imageUrl ? (
+                                <img src={editedContent.steps[index].imageUrl} alt="Preview" className="h-24 w-auto rounded-md border object-cover" />
+                            ) : (
+                                <div className="h-24 w-36 flex items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">
+                                    No Image
+                                </div>
+                            )}
+                        </div>
                     </div>
                   </div>
                 ))}
