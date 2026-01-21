@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useFirestore, useDoc, useMemoFirebase, setDocumentNonBlocking } from '@/firebase';
 import { doc } from 'firebase/firestore';
+import { Plus, Trash2 } from "lucide-react";
 
 const pages = [
   { id: 'home', name: 'Home Page', sections: 6 },
@@ -73,7 +74,7 @@ function EditContent() {
     const handleEditClick = (section: Section) => {
         setSelectedSection(section);
         const currentContent = pageContent?.[section.id] ?? section.content;
-        setEditedContent(currentContent);
+        setEditedContent(JSON.parse(JSON.stringify(currentContent)));
         setIsDialogOpen(true);
     };
 
@@ -81,10 +82,25 @@ function EditContent() {
         setEditedContent((prev: any) => ({ ...prev, [field]: value }));
     };
 
-    const handleStepChange = (index: number, field: 'title' | 'description', value: string) => {
+    const handleStepChange = (index: number, field: 'title' | 'description' | 'icon', value: string) => {
         setEditedContent((prev: any) => {
             const newSteps = [...(prev.steps || [])];
             newSteps[index] = { ...newSteps[index], [field]: value };
+            return { ...prev, steps: newSteps };
+        });
+    };
+
+    const handleAddStep = () => {
+        setEditedContent((prev: any) => ({
+            ...prev,
+            steps: [...(prev.steps || []), { icon: 'PlusCircle', title: 'New Step', description: '' }]
+        }));
+    };
+
+    const handleRemoveStep = (index: number) => {
+        setEditedContent((prev: any) => {
+            const newSteps = [...(prev.steps || [])];
+            newSteps.splice(index, 1);
             return { ...prev, steps: newSteps };
         });
     };
@@ -118,21 +134,28 @@ function EditContent() {
               <Label htmlFor="subtitle" className="text-right pt-2 capitalize">Subtitle</Label>
               <Textarea id="subtitle" value={contentToEdit.subtitle || ''} onChange={(e) => handleInputChange('subtitle', e.target.value)} className="col-span-3" />
             </div>
-            <h4 className="font-semibold mt-4 col-span-4 border-b pb-2">Workflow Steps</h4>
-            <div className="col-span-4 max-h-[40vh] overflow-y-auto space-y-4 pr-2">
+            <div className="col-span-4 flex items-center justify-between border-b pb-2 mt-4">
+                <h4 className="font-semibold">Workflow Steps</h4>
+                <Button size="sm" variant="outline" onClick={handleAddStep}><Plus className="mr-2 h-4 w-4" /> Add Step</Button>
+            </div>
+            <div className="col-span-4 max-h-[40vh] overflow-y-auto space-y-4 p-1">
                 {steps.map((step: WorkflowStep, index: number) => (
-                  <div key={index} className="grid grid-cols-4 items-start gap-4 border-t pt-4">
-                     <Label className="text-right pt-2 capitalize font-medium text-muted-foreground">{step.icon}</Label>
-                     <div className="col-span-3 space-y-2">
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor={`step-title-${index}`} className="text-right col-span-1">Title</Label>
-                            <Input id={`step-title-${index}`} value={step.title || ''} onChange={(e) => handleStepChange(index, 'title', e.target.value)} className="col-span-3" />
-                        </div>
-                        <div className="grid grid-cols-4 items-start gap-4">
-                             <Label htmlFor={`step-desc-${index}`} className="text-right col-span-1 pt-2">Description</Label>
-                             <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="col-span-3" />
-                        </div>
-                     </div>
+                  <div key={index} className="relative space-y-3 rounded-lg border p-4">
+                    <Button variant="ghost" size="icon" className="absolute top-1 right-1 h-7 w-7 text-muted-foreground hover:text-destructive" onClick={() => handleRemoveStep(index)}>
+                        <Trash2 className="h-4 w-4" />
+                    </Button>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor={`step-icon-${index}`} className="text-right">Icon</Label>
+                        <Input id={`step-icon-${index}`} value={step.icon || ''} onChange={(e) => handleStepChange(index, 'icon', e.target.value)} className="col-span-3" placeholder="e.g. Ticket"/>
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor={`step-title-${index}`} className="text-right">Title</Label>
+                        <Input id={`step-title-${index}`} value={step.title || ''} onChange={(e) => handleStepChange(index, 'title', e.target.value)} className="col-span-3" />
+                    </div>
+                    <div className="grid grid-cols-4 items-start gap-4">
+                        <Label htmlFor={`step-desc-${index}`} className="text-right pt-2">Description</Label>
+                        <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="col-span-3" />
+                    </div>
                   </div>
                 ))}
             </div>

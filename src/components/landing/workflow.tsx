@@ -7,6 +7,7 @@ import {
   Users,
   CircleCheckBig,
   Archive,
+  PlusCircle,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -27,6 +28,7 @@ const iconComponents: { [key: string]: React.ElementType } = {
   Users,
   CircleCheckBig,
   Archive,
+  PlusCircle,
 };
 
 const defaultLifecycleSteps = [
