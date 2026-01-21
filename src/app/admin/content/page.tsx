@@ -26,16 +26,36 @@ const pages = [
   { id: 'pricing', name: 'Pricing Page', sections: 1 },
 ];
 
+const lifecycleStepsDefault = [
+    { icon: "Ticket", title: "New Ticket", description: "Incidents are created via email, portal, or API." },
+    { icon: "BrainCircuit", title: "AI Triage", description: "SupportEngine analyzes and prioritizes the ticket." },
+    { icon: "Tag", title: "Categorization", description: "Automatically tagged for better routing.", tags: ["Hardware", "Software", "Network", "Security"]},
+    { icon: "Users", title: "Assignment", description: "Routed to the best-suited agent or team." },
+    { icon: "CircleCheckBig", title: "Resolution", description: "Agents solve the issue with AI-powered suggestions." },
+    { icon: "Archive", title: "Closed", description: "Ticket is closed and knowledge base is updated." },
+];
+
 const homePageSections = [
   { id: 'hero', name: 'Hero Section', component: 'Hero', content: { title: 'Revolutionize Your IT Support with SupportEngine', subtitle: 'SupportEngine integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.' } },
   { id: 'trusted-by', name: 'Trusted By', component: 'TrustedBy', content: {} },
-  { id: 'workflow', name: 'Workflow', component: 'Workflow', content: { title: 'A Glimpse Into the Ticket Lifecycle', subtitle: "Follow an incident from creation to resolution, powered by intelligent automation at every step." } },
+  { 
+      id: 'workflow', 
+      name: 'Workflow', 
+      component: 'Workflow', 
+      content: { 
+          title: 'A Glimpse Into the Ticket Lifecycle', 
+          subtitle: "Follow an incident from creation to resolution, powered by intelligent automation at every step.",
+          steps: lifecycleStepsDefault
+      } 
+  },
   { id: 'asset-feature', name: 'Asset Module', component: 'AssetFeature', content: { title: 'Complete Visibility and Control Over Your IT Assets', subtitle: "SupportEngine's Asset Module provides a holistic view of your entire IT landscape." } },
   { id: 'pricing', name: 'Pricing', component: 'Pricing', content: { title: 'Choose the Right Plan for Your Team', subtitle: 'Simple, transparent pricing that scales with you. No hidden fees.' } },
   { id: 'product-explorer', name: 'Product Explorer', component: 'ProductExplorer', content: { title: 'Explore SupportEngine in Action' } },
 ];
 
 type Section = typeof homePageSections[0];
+type WorkflowStep = { icon: string; title: string; description: string; tags?: string[] };
+
 
 function EditContent() {
     const searchParams = useSearchParams();
@@ -61,6 +81,14 @@ function EditContent() {
         setEditedContent((prev: any) => ({ ...prev, [field]: value }));
     };
 
+    const handleStepChange = (index: number, field: 'title' | 'description', value: string) => {
+        setEditedContent((prev: any) => {
+            const newSteps = [...(prev.steps || [])];
+            newSteps[index] = { ...newSteps[index], [field]: value };
+            return { ...prev, steps: newSteps };
+        });
+    };
+
     const handleSaveChanges = () => {
         if (!contentDocRef || !selectedSection) return;
 
@@ -77,6 +105,41 @@ function EditContent() {
       if (!selectedSection) return null;
 
       const contentToEdit = editedContent || {};
+
+      if (selectedSection.id === 'workflow') {
+        const steps = contentToEdit.steps || [];
+        return (
+          <>
+            <div className="grid grid-cols-4 items-start gap-4">
+              <Label htmlFor="title" className="text-right pt-2 capitalize">Title</Label>
+              <Input id="title" value={contentToEdit.title || ''} onChange={(e) => handleInputChange('title', e.target.value)} className="col-span-3" />
+            </div>
+            <div className="grid grid-cols-4 items-start gap-4">
+              <Label htmlFor="subtitle" className="text-right pt-2 capitalize">Subtitle</Label>
+              <Textarea id="subtitle" value={contentToEdit.subtitle || ''} onChange={(e) => handleInputChange('subtitle', e.target.value)} className="col-span-3" />
+            </div>
+            <h4 className="font-semibold mt-4 col-span-4 border-b pb-2">Workflow Steps</h4>
+            <div className="col-span-4 max-h-[40vh] overflow-y-auto space-y-4 pr-2">
+                {steps.map((step: WorkflowStep, index: number) => (
+                  <div key={index} className="grid grid-cols-4 items-start gap-4 border-t pt-4">
+                     <Label className="text-right pt-2 capitalize font-medium text-muted-foreground">{step.icon}</Label>
+                     <div className="col-span-3 space-y-2">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor={`step-title-${index}`} className="text-right col-span-1">Title</Label>
+                            <Input id={`step-title-${index}`} value={step.title || ''} onChange={(e) => handleStepChange(index, 'title', e.target.value)} className="col-span-3" />
+                        </div>
+                        <div className="grid grid-cols-4 items-start gap-4">
+                             <Label htmlFor={`step-desc-${index}`} className="text-right col-span-1 pt-2">Description</Label>
+                             <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="col-span-3" />
+                        </div>
+                     </div>
+                  </div>
+                ))}
+            </div>
+          </>
+        )
+      }
+      
       const fields = Object.keys(selectedSection.content || {});
 
       if (fields.length === 0) {

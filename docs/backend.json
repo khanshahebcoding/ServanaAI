@@ -61,6 +61,35 @@
             },
             "subtitle": {
               "type": "string"
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "icon": {
+                    "type": "string",
+                    "description": "Name of the lucide-react icon."
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "icon",
+                  "title",
+                  "description"
+                ]
+              }
             }
           }
         },

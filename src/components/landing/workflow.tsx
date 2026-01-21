@@ -20,7 +20,16 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const lifecycleSteps = [
+const iconComponents: { [key: string]: React.ElementType } = {
+  Ticket,
+  BrainCircuit,
+  Tag,
+  Users,
+  CircleCheckBig,
+  Archive,
+};
+
+const defaultLifecycleSteps = [
   {
     icon: Ticket,
     title: "New Ticket",
@@ -54,14 +63,32 @@ const lifecycleSteps = [
   },
 ];
 
+interface WorkflowStep {
+  icon: string;
+  title: string;
+  description: string;
+  tags?: string[];
+}
+
 interface WorkflowContent {
   title: string;
   subtitle: string;
+  steps: WorkflowStep[];
 }
 
 export function Workflow({ content }: { content?: WorkflowContent }) {
   const title = content?.title || "A Glimpse Into the Ticket Lifecycle";
   const subtitle = content?.subtitle || "Follow an incident from creation to resolution, powered by intelligent automation at every step.";
+
+  const lifecycleSteps = content?.steps
+    ? content.steps.map((step) => {
+        const IconComponent = iconComponents[step.icon] || Ticket;
+        return {
+          ...step,
+          icon: IconComponent,
+        };
+      })
+    : defaultLifecycleSteps;
 
   return (
     <section id="features" className="w-full py-20 md:py-24 lg:py-32">
