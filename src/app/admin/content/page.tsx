@@ -171,16 +171,16 @@ function EditContent() {
       if (selectedSection.id === 'hero') {
         return (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-              <Label htmlFor="title" className="md:text-right pt-2 capitalize">Title</Label>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+              <Label htmlFor="title" className="pt-2 md:text-right">Title</Label>
               <Input id="title" value={contentToEdit.title || ''} onChange={(e) => handleInputChange('title', e.target.value)} className="md:col-span-3" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-              <Label htmlFor="subtitle" className="md:text-right pt-2 capitalize">Subtitle</Label>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+              <Label htmlFor="subtitle" className="pt-2 md:text-right">Subtitle</Label>
               <Textarea id="subtitle" value={contentToEdit.subtitle || ''} onChange={(e) => handleInputChange('subtitle', e.target.value)} className="md:col-span-3" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-                <Label htmlFor={`hero-image`} className="md:text-right pt-2">Image</Label>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+                <Label htmlFor={`hero-image`} className="pt-2 md:text-right">Image</Label>
                 <div className="md:col-span-3">
                     <Input 
                         id={`hero-image`}
@@ -206,7 +206,7 @@ function EditContent() {
                     {editedContent.imageUrl ? (
                         <img src={editedContent.imageUrl} alt="Preview" className="h-24 w-auto rounded-md border object-cover" />
                     ) : (
-                        <div className="h-24 w-36 flex items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">
+                        <div className="flex h-24 w-36 items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">
                             No Image
                         </div>
                     )}
@@ -220,38 +220,38 @@ function EditContent() {
         const steps = contentToEdit.steps || [];
         return (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-              <Label htmlFor="title" className="md:text-right pt-2 capitalize">Title</Label>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+              <Label htmlFor="title" className="pt-2 md:text-right">Title</Label>
               <Input id="title" value={contentToEdit.title || ''} onChange={(e) => handleInputChange('title', e.target.value)} className="md:col-span-3" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-              <Label htmlFor="subtitle" className="md:text-right pt-2 capitalize">Subtitle</Label>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+              <Label htmlFor="subtitle" className="pt-2 md:text-right">Subtitle</Label>
               <Textarea id="subtitle" value={contentToEdit.subtitle || ''} onChange={(e) => handleInputChange('subtitle', e.target.value)} className="md:col-span-3" />
             </div>
-            <div className="col-span-4 flex items-center justify-between border-b pb-2 mt-4">
+            <div className="col-span-4 mt-4 flex items-center justify-between border-b pb-2">
                 <h4 className="font-semibold">Steps</h4>
                 <Button size="sm" variant="outline" onClick={handleAddStep}><Plus className="mr-2 h-4 w-4" /> Add Step</Button>
             </div>
-            <div className="col-span-4 max-h-[40vh] overflow-y-auto space-y-4 p-1">
+            <div className="col-span-4 max-h-[40vh] space-y-4 overflow-y-auto p-1">
                 {steps.map((step: FeatureStep, index: number) => (
                   <div key={index} className="relative space-y-3 rounded-lg border p-4">
                     <Button variant="ghost" size="icon" className="absolute top-1 right-1 h-7 w-7 text-muted-foreground hover:text-destructive" onClick={() => handleRemoveStep(index)}>
                         <Trash2 className="h-4 w-4" />
                     </Button>
-                     <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-4">
+                     <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-4">
                         <Label htmlFor={`step-label-${index}`} className="md:text-right">Label</Label>
                         <Input id={`step-label-${index}`} value={step.label || ''} onChange={(e) => handleStepChange(index, 'label', e.target.value)} className="md:col-span-3"/>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-4">
+                    <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-4">
                         <Label htmlFor={`step-title-${index}`} className="md:text-right">Title</Label>
                         <Input id={`step-title-${index}`} value={step.title || ''} onChange={(e) => handleStepChange(index, 'title', e.target.value)} className="md:col-span-3" />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-                        <Label htmlFor={`step-desc-${index}`} className="md:text-right pt-2">Description</Label>
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+                        <Label htmlFor={`step-desc-${index}`} className="pt-2 md:text-right">Description</Label>
                         <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="md:col-span-3" />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-                        <Label htmlFor={`step-image-${index}`} className="md:text-right pt-2">Image</Label>
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+                        <Label htmlFor={`step-image-${index}`} className="pt-2 md:text-right">Image</Label>
                         <div className="md:col-span-3">
                             <Input 
                                 id={`step-image-${index}`}
@@ -277,7 +277,7 @@ function EditContent() {
                             {editedContent.steps?.[index]?.imageUrl ? (
                                 <img src={editedContent.steps[index].imageUrl} alt="Preview" className="h-24 w-auto rounded-md border object-cover" />
                             ) : (
-                                <div className="h-24 w-36 flex items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">
+                                <div className="flex h-24 w-36 items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">
                                     No Image
                                 </div>
                             )}
@@ -294,34 +294,34 @@ function EditContent() {
         const steps = contentToEdit.steps || [];
         return (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-              <Label htmlFor="title" className="md:text-right pt-2 capitalize">Title</Label>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+              <Label htmlFor="title" className="pt-2 md:text-right">Title</Label>
               <Input id="title" value={contentToEdit.title || ''} onChange={(e) => handleInputChange('title', e.target.value)} className="md:col-span-3" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-              <Label htmlFor="subtitle" className="md:text-right pt-2 capitalize">Subtitle</Label>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+              <Label htmlFor="subtitle" className="pt-2 md:text-right">Subtitle</Label>
               <Textarea id="subtitle" value={contentToEdit.subtitle || ''} onChange={(e) => handleInputChange('subtitle', e.target.value)} className="md:col-span-3" />
             </div>
-            <div className="col-span-4 flex items-center justify-between border-b pb-2 mt-4">
+            <div className="col-span-4 mt-4 flex items-center justify-between border-b pb-2">
                 <h4 className="font-semibold">Workflow Steps</h4>
                 <Button size="sm" variant="outline" onClick={handleAddStep}><Plus className="mr-2 h-4 w-4" /> Add Step</Button>
             </div>
-            <div className="col-span-4 max-h-[40vh] overflow-y-auto space-y-4 p-1">
+            <div className="col-span-4 max-h-[40vh] space-y-4 overflow-y-auto p-1">
                 {steps.map((step: WorkflowStep, index: number) => (
                   <div key={index} className="relative space-y-3 rounded-lg border p-4">
                     <Button variant="ghost" size="icon" className="absolute top-1 right-1 h-7 w-7 text-muted-foreground hover:text-destructive" onClick={() => handleRemoveStep(index)}>
                         <Trash2 className="h-4 w-4" />
                     </Button>
-                    <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-4">
+                    <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-4">
                         <Label htmlFor={`step-icon-${index}`} className="md:text-right">Icon</Label>
                         <Input id={`step-icon-${index}`} value={step.icon || ''} onChange={(e) => handleStepChange(index, 'icon', e.target.value)} className="md:col-span-3" placeholder="e.g. Ticket"/>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-4">
+                    <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-4">
                         <Label htmlFor={`step-title-${index}`} className="md:text-right">Title</Label>
                         <Input id={`step-title-${index}`} value={step.title || ''} onChange={(e) => handleStepChange(index, 'title', e.target.value)} className="md:col-span-3" />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-                        <Label htmlFor={`step-desc-${index}`} className="md:text-right pt-2">Description</Label>
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+                        <Label htmlFor={`step-desc-${index}`} className="pt-2 md:text-right">Description</Label>
                         <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="md:col-span-3" />
                     </div>
                   </div>
@@ -338,8 +338,8 @@ function EditContent() {
       }
 
       return fields.map((key) => (
-         <div key={key} className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
-              <Label htmlFor={key} className="md:text-right pt-2 capitalize">
+         <div key={key} className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+              <Label htmlFor={key} className="pt-2 capitalize md:text-right">
                   {key.replace(/([A-Z])/g, ' $1')}
               </Label>
               {key.includes('subtitle') || key.includes('description') || key.includes('content') ? (
@@ -422,7 +422,7 @@ function EditContentFallback() {
     return (
         <Card>
             <CardHeader>
-                <Skeleton className="h-8 w-48 mb-2" />
+                <Skeleton className="mb-2 h-8 w-48" />
                 <Skeleton className="h-4 w-72" />
             </CardHeader>
             <CardContent>
@@ -442,3 +442,5 @@ export default function ContentPage() {
         </Suspense>
     )
 }
+
+    
