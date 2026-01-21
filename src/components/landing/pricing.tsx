@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const plans = [
   {
@@ -27,6 +28,7 @@ const plans = [
     ],
     cta: "Get Started Free",
     isPopular: false,
+    link: "https://app.supportengine.ai/login",
   },
   {
     name: "Professional",
@@ -42,6 +44,7 @@ const plans = [
     ],
     cta: "Start 14-day Trial",
     isPopular: true,
+    link: "/signup",
   },
   {
     name: "Enterprise",
@@ -57,6 +60,7 @@ const plans = [
     ],
     cta: "Contact Sales",
     isPopular: false,
+    link: "#documentation",
   },
 ];
 
@@ -150,10 +154,17 @@ export function Pricing({ content }: { content?: PricingContent }) {
                 </CardContent>
                 <CardFooter>
                   <Button
+                    asChild
                     className="w-full"
                     variant={plan.isPopular ? "default" : "outline"}
                   >
-                    {plan.cta}
+                    <Link
+                      href={plan.link || '#'}
+                      target={plan.link?.startsWith('http') ? '_blank' : undefined}
+                      rel={plan.link?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    >
+                      {plan.cta}
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>
