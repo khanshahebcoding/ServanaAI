@@ -10,6 +10,7 @@ import { BookADemoDialog } from "./book-demo-dialog";
 interface HeroContent {
   title: string;
   subtitle: string;
+  imageUrl?: string;
 }
 
 export function Hero({ content }: { content?: HeroContent }) {
@@ -61,7 +62,7 @@ export function Hero({ content }: { content?: HeroContent }) {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="relative mt-12 md:mt-20"
           >
-            <DashboardMockup />
+            <DashboardMockup imageUrl={content?.imageUrl} />
           </motion.div>
         </div>
       </section>

@@ -50,6 +50,10 @@
             },
             "subtitle": {
               "type": "string"
+            },
+            "imageUrl": {
+              "type": "string",
+              "description": "URL for the hero image."
             }
           }
         },

@@ -37,7 +37,7 @@ const lifecycleStepsDefault = [
 ];
 
 const homePageSections = [
-  { id: 'hero', name: 'Hero Section', component: 'Hero', content: { title: 'Revolutionize Your IT Support with SupportEngine', subtitle: 'SupportEngine integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.' } },
+  { id: 'hero', name: 'Hero Section', component: 'Hero', content: { title: 'Revolutionize Your IT Support with SupportEngine', subtitle: 'SupportEngine integrates intelligent automation to manage incidents, assets, and analytics seamlessly, empowering your support teams to deliver exceptional service.', imageUrl: '' } },
   { id: 'trusted-by', name: 'Trusted By', component: 'TrustedBy', content: {} },
   { 
       id: 'workflow', 
@@ -167,6 +167,54 @@ function EditContent() {
       if (!selectedSection) return null;
 
       const contentToEdit = editedContent || {};
+
+      if (selectedSection.id === 'hero') {
+        return (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
+              <Label htmlFor="title" className="md:text-right pt-2 capitalize">Title</Label>
+              <Input id="title" value={contentToEdit.title || ''} onChange={(e) => handleInputChange('title', e.target.value)} className="md:col-span-3" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
+              <Label htmlFor="subtitle" className="md:text-right pt-2 capitalize">Subtitle</Label>
+              <Textarea id="subtitle" value={contentToEdit.subtitle || ''} onChange={(e) => handleInputChange('subtitle', e.target.value)} className="md:col-span-3" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 items-start gap-4">
+                <Label htmlFor={`hero-image`} className="md:text-right pt-2">Image</Label>
+                <div className="md:col-span-3">
+                    <Input 
+                        id={`hero-image`}
+                        type="file"
+                        accept="image/*"
+                        className="mb-2"
+                        onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                                if (file.size > 1024 * 1024) {
+                                    alert('File is too large. Please select an image under 1MB.');
+                                    e.target.value = '';
+                                    return;
+                                }
+                                const reader = new FileReader();
+                                reader.onload = (readEvent) => {
+                                    handleInputChange('imageUrl', readEvent.target?.result as string);
+                                };
+                                reader.readAsDataURL(file);
+                            }
+                        }}
+                    />
+                    {editedContent.imageUrl ? (
+                        <img src={editedContent.imageUrl} alt="Preview" className="h-24 w-auto rounded-md border object-cover" />
+                    ) : (
+                        <div className="h-24 w-36 flex items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">
+                            No Image
+                        </div>
+                    )}
+                </div>
+            </div>
+          </>
+        )
+      }
 
       if (selectedSection.component === 'FeatureSectionWithSteps') {
         const steps = contentToEdit.steps || [];
