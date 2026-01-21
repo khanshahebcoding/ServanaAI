@@ -53,7 +53,7 @@ export default function SubmissionDetailPage() {
                     </div>
                 ) : submission ? (
                     <div className="space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-1">
                                 <p className="text-sm font-medium text-muted-foreground">Name</p>
                                 <p className="font-semibold">{submission.name || 'N/A'}</p>
@@ -63,7 +63,7 @@ export default function SubmissionDetailPage() {
                                 <p className="font-semibold">{submission.email}</p>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-1">
                                 <p className="text-sm font-medium text-muted-foreground">Contact Number</p>
                                 <p className="font-semibold">{submission.contactNumber || 'N/A'}</p>
@@ -74,7 +74,7 @@ export default function SubmissionDetailPage() {
                             </div>
                         </div>
                          {submission.appointmentDate && (
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-1">
                                     <p className="text-sm font-medium text-muted-foreground">Preferred Date</p>
                                     <p className="font-semibold">{submission.appointmentDate}</p>
