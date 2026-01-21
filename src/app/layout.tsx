@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
+import { SocialSidebar } from '@/components/landing/social-sidebar';
 
 export const metadata: Metadata = {
   title: 'ServanaAI | Intelligent IT Support Automation',
@@ -21,6 +22,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         {children}
+        <SocialSidebar />
         <Toaster />
       </body>
     </html>
