@@ -43,10 +43,13 @@ export function SocialSidebar() {
               <span className="absolute top-0 left-0 h-14 w-14 rounded-full bg-accent opacity-0 group-hover:opacity-40 transition-all duration-300 group-hover:[transform:translate(5px,-5px)]"></span>
               <span className="absolute top-0 left-0 h-14 w-14 rounded-full bg-accent opacity-0 group-hover:opacity-60 transition-all duration-300 group-hover:[transform:translate(10px,-10px)]"></span>
               
-              <Link href={link.href} passHref legacyBehavior>
-                <a target="_blank" rel="noopener noreferrer" className="relative z-10 flex items-center justify-center h-14 w-14 rounded-full bg-background/70 text-accent shadow-md transition-transform duration-300 group-hover:[transform:translate(15px,-15px)]">
-                  {link.icon}
-                </a>
+              <Link
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-10 flex items-center justify-center h-14 w-14 rounded-full bg-background/70 text-accent shadow-md transition-transform duration-300 group-hover:[transform:translate(15px,-15px)]"
+              >
+                {link.icon}
               </Link>
               
               <div className="absolute top-1/2 -translate-y-1/2 left-full ml-8 whitespace-nowrap rounded-md bg-background/80 px-3 py-1 text-sm text-accent shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:[transform:translate(25px,-2px)_skew(-5deg)]">
