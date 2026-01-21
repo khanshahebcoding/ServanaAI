@@ -120,7 +120,7 @@ service cloud.firestore {
      * @principle Separates public content from private user data with distinct access rules.
      */
     match /content/{pageId} {
-      allow read: if true;
+      allow get, list: if true;
       allow write: if isAdmin();
     }
   }
