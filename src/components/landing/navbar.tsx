@@ -88,10 +88,17 @@ export function Navbar() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled ? "bg-background/80 shadow-md backdrop-blur-sm" : "bg-transparent"
+          scrolled ? "p-2" : ""
         )}
       >
-        <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
+        <div
+          className={cn(
+            "container mx-auto flex items-center justify-between px-4 md:px-6 transition-all duration-300",
+            scrolled
+              ? "h-16 bg-background/80 shadow-lg backdrop-blur-sm rounded-xl border border-border/20"
+              : "h-20 bg-transparent"
+          )}
+        >
           <Link href="/" className="flex items-center gap-2" prefetch={false}>
             <div className="bg-primary text-primary-foreground rounded-full p-2">
               <Logo className="h-6 w-6" />
