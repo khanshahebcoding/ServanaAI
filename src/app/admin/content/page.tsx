@@ -17,8 +17,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useFirestore, useDoc, useMemoFirebase, setDocumentNonBlocking } from '@/firebase';
+import { useFirestore, useDoc, useMemoFirebase, setDocumentNonBlocking, useStorage } from '@/firebase';
 import { doc } from 'firebase/firestore';
+import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Plus, Trash2 } from "lucide-react";
 
 const pages = [
@@ -104,12 +105,16 @@ function EditContent() {
     const page = pages.find(p => p.id === pageId);
 
     const firestore = useFirestore();
+    const storage = useStorage();
     const contentDocRef = useMemoFirebase(() => (firestore && pageId) ? doc(firestore, 'content', pageId) : null, [firestore, pageId]);
     const { data: pageContent, isLoading } = useDoc<any>(contentDocRef);
 
     const [selectedSection, setSelectedSection] = useState<Section | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editedContent, setEditedContent] = useState<any>({});
+    const [isSaving, setIsSaving] = useState(false);
+    const [uploadingState, setUploadingState] = useState<{ [key: string]: boolean }>({});
+
 
     const pageSections = pageId === 'home' ? homePageSections : pageId === 'features' ? featuresPageSections : [];
 
@@ -131,6 +136,36 @@ function EditContent() {
             return { ...prev, steps: newSteps };
         });
     };
+    
+    const handleImageUpload = async (file: File, fieldId: string, index?: number) => {
+        if (!storage) return;
+
+        if (file.size > 2 * 1024 * 1024) { // 2MB limit
+            alert('File is too large. Please select an image under 2MB.');
+            return;
+        }
+
+        setUploadingState(prev => ({ ...prev, [fieldId]: true }));
+
+        const imageRef = storageRef(storage, `content-images/${Date.now()}-${file.name}`);
+        
+        try {
+            const snapshot = await uploadBytes(imageRef, file);
+            const downloadURL = await getDownloadURL(snapshot.ref);
+            
+            if (typeof index === 'number') {
+                handleStepChange(index, 'imageUrl', downloadURL);
+            } else {
+                handleInputChange('imageUrl', downloadURL);
+            }
+        } catch (error) {
+            console.error("Image upload failed:", error);
+            alert("Image upload failed. Please try again.");
+        } finally {
+            setUploadingState(prev => ({ ...prev, [fieldId]: false }));
+        }
+    };
+
 
     const handleAddStep = () => {
         const newStep = selectedSection?.component === 'FeatureSectionWithSteps'
@@ -151,22 +186,62 @@ function EditContent() {
         });
     };
 
-    const handleSaveChanges = () => {
-        if (!contentDocRef || !selectedSection) return;
-
-        const dataToUpdate = {
-            [selectedSection.id]: editedContent
-        };
-
-        setDocumentNonBlocking(contentDocRef, dataToUpdate, { merge: true });
-
-        setIsDialogOpen(false);
+    const handleSaveChanges = async () => {
+        if (!contentDocRef || !selectedSection || !storage) return;
+        setIsSaving(true);
+    
+        try {
+            let contentToSave = JSON.parse(JSON.stringify(editedContent));
+    
+            const uploadDataUri = async (dataUri: string): Promise<string> => {
+                const response = await fetch(dataUri);
+                const blob = await response.blob();
+                const imageRef = storageRef(storage, `content-images/${Date.now()}-${blob.type.replace('image/','')}`);
+                const snapshot = await uploadBytes(imageRef, blob);
+                return await getDownloadURL(snapshot.ref);
+            };
+    
+            // Migrate root-level imageUrl if it's a data URI
+            if (contentToSave.imageUrl && contentToSave.imageUrl.startsWith('data:image')) {
+                contentToSave.imageUrl = await uploadDataUri(contentToSave.imageUrl);
+            }
+    
+            // Migrate imageUrls within steps if they are data URIs
+            if (contentToSave.steps && Array.isArray(contentToSave.steps)) {
+                const uploadPromises = contentToSave.steps.map(async (step: any, index: number) => {
+                    if (step.imageUrl && step.imageUrl.startsWith('data:image')) {
+                        return uploadDataUri(step.imageUrl);
+                    }
+                    return step.imageUrl;
+                });
+                const newImageUrls = await Promise.all(uploadPromises);
+                contentToSave.steps.forEach((step: any, index: number) => {
+                    step.imageUrl = newImageUrls[index];
+                });
+            }
+    
+            const dataToUpdate = {
+                [selectedSection.id]: contentToSave
+            };
+    
+            setDocumentNonBlocking(contentDocRef, dataToUpdate, { merge: true });
+            setIsDialogOpen(false);
+        } catch (error) {
+            console.error("Failed to save changes:", error);
+            alert("An error occurred while saving. Please check the console for details.");
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     const renderFormFields = () => {
       if (!selectedSection) return null;
 
       const contentToEdit = editedContent || {};
+      
+      const heroImageFieldId = `hero-image`;
+      const isHeroUploading = uploadingState[heroImageFieldId];
+
 
       if (selectedSection.id === 'hero') {
         return (
@@ -180,30 +255,24 @@ function EditContent() {
               <Textarea id="subtitle" value={contentToEdit.subtitle || ''} onChange={(e) => handleInputChange('subtitle', e.target.value)} className="md:col-span-3" />
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
-                <Label htmlFor={`hero-image`} className="pt-2 md:text-right">Image</Label>
+                <Label htmlFor={heroImageFieldId} className="pt-2 md:text-right">Image</Label>
                 <div className="md:col-span-3">
                     <Input 
-                        id={`hero-image`}
+                        id={heroImageFieldId}
                         type="file"
                         accept="image/*"
                         className="mb-2"
+                        disabled={isHeroUploading}
                         onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) {
-                                if (file.size > 1024 * 1024) {
-                                    alert('File is too large. Please select an image under 1MB.');
-                                    e.target.value = '';
-                                    return;
-                                }
-                                const reader = new FileReader();
-                                reader.onload = (readEvent) => {
-                                    handleInputChange('imageUrl', readEvent.target?.result as string);
-                                };
-                                reader.readAsDataURL(file);
+                                handleImageUpload(file, heroImageFieldId);
                             }
                         }}
                     />
-                    {editedContent.imageUrl ? (
+                    {isHeroUploading ? (
+                         <div className="flex h-24 w-36 items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">Uploading...</div>
+                    ) : editedContent.imageUrl ? (
                         <img src={editedContent.imageUrl} alt="Preview" className="h-24 w-auto rounded-md border object-cover" />
                     ) : (
                         <div className="flex h-24 w-36 items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">
@@ -233,7 +302,10 @@ function EditContent() {
                 <Button size="sm" variant="outline" onClick={handleAddStep}><Plus className="mr-2 h-4 w-4" /> Add Step</Button>
             </div>
             <div className="col-span-4 max-h-[40vh] space-y-4 overflow-y-auto p-1">
-                {steps.map((step: FeatureStep, index: number) => (
+                {steps.map((step: FeatureStep, index: number) => {
+                  const stepImageFieldId = `step-image-${index}`;
+                  const isStepUploading = uploadingState[stepImageFieldId];
+                  return (
                   <div key={index} className="relative space-y-3 rounded-lg border p-4">
                     <Button variant="ghost" size="icon" className="absolute top-1 right-1 h-7 w-7 text-muted-foreground hover:text-destructive" onClick={() => handleRemoveStep(index)}>
                         <Trash2 className="h-4 w-4" />
@@ -251,30 +323,24 @@ function EditContent() {
                         <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="md:col-span-3" />
                     </div>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
-                        <Label htmlFor={`step-image-${index}`} className="pt-2 md:text-right">Image</Label>
+                        <Label htmlFor={stepImageFieldId} className="pt-2 md:text-right">Image</Label>
                         <div className="md:col-span-3">
                             <Input 
-                                id={`step-image-${index}`}
+                                id={stepImageFieldId}
                                 type="file"
                                 accept="image/*"
                                 className="mb-2"
+                                disabled={isStepUploading}
                                 onChange={(e) => {
                                     const file = e.target.files?.[0];
                                     if (file) {
-                                        if (file.size > 1024 * 1024) {
-                                            alert('File is too large. Please select an image under 1MB.');
-                                            e.target.value = '';
-                                            return;
-                                        }
-                                        const reader = new FileReader();
-                                        reader.onload = (readEvent) => {
-                                            handleStepChange(index, 'imageUrl', readEvent.target?.result as string);
-                                        };
-                                        reader.readAsDataURL(file);
+                                       handleImageUpload(file, stepImageFieldId, index);
                                     }
                                 }}
                             />
-                            {editedContent.steps?.[index]?.imageUrl ? (
+                            {isStepUploading ? (
+                                <div className="flex h-24 w-36 items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">Uploading...</div>
+                            ) : editedContent.steps?.[index]?.imageUrl ? (
                                 <img src={editedContent.steps[index].imageUrl} alt="Preview" className="h-24 w-auto rounded-md border object-cover" />
                             ) : (
                                 <div className="flex h-24 w-36 items-center justify-center rounded-md border bg-muted text-sm text-muted-foreground">
@@ -284,7 +350,7 @@ function EditContent() {
                         </div>
                     </div>
                   </div>
-                ))}
+                )})}
             </div>
           </>
         )
@@ -409,7 +475,9 @@ function EditContent() {
                            {renderFormFields()}
                         </div>
                         <DialogFooter>
-                            <Button type="submit" onClick={handleSaveChanges}>Save changes</Button>
+                            <Button type="submit" onClick={handleSaveChanges} disabled={isSaving}>
+                                {isSaving ? 'Saving...' : 'Save changes'}
+                            </Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
