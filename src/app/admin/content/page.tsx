@@ -85,7 +85,7 @@ const userStepsDefault = [
 
 
 const featuresPageSections = [
-    { id: 'featuresHero', name: 'Hero Section', component: 'FeaturesHero', content: { title: 'AI-Driven ITSM: Empowering Your IT Infrastructure with SupportEngine.', subtitle: 'From automated incident resolution to intelligent asset lifecycle tracking, experience the future of service management.' } },
+    { id: 'featuresHero', name: 'Hero Section', component: 'FeaturesHero', content: { title: 'AI-Driven ITSM: Empowering Your IT Infrastructure with SupportEngine.', subtitle: 'From automated incident resolution to intelligent asset lifecycle tracking, experience the future of service management.', imageUrl: '' } },
     { id: 'incidentManagement', name: 'Incident Management', component: 'FeatureSectionWithSteps', content: { title: 'Intelligent Incident Management', subtitle: "Follow a ticket's journey, powered by AI at every step. Click each stage to see it in action.", steps: incidentStepsDefault } },
     { id: 'assetLifecycle', name: 'Asset Lifecycle', component: 'FeatureSectionWithSteps', content: { title: 'Smart Asset Lifecycle Management', subtitle: "From procurement to retirement, gain full control over every asset. Click each stage to see how.", steps: assetStepsDefault } },
     { id: 'enterpriseMapping', name: 'Enterprise Mapping', component: 'FeatureSectionWithSteps', content: { title: 'Organizational Intelligence', subtitle: 'Map your entire enterprise with precision and clarity. Click each stage to see how.', steps: orgStepsDefault } },
@@ -179,6 +179,25 @@ function EditContent() {
       const contentToEdit = editedContent || {};
 
       if (selectedSection.id === 'hero') {
+        return (
+          <>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+              <Label htmlFor="title" className="pt-2 md:text-right">Title</Label>
+              <Input id="title" value={contentToEdit.title || ''} onChange={(e) => handleInputChange('title', e.target.value)} className="md:col-span-3" />
+            </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+              <Label htmlFor="subtitle" className="pt-2 md:text-right">Subtitle</Label>
+              <Textarea id="subtitle" value={contentToEdit.subtitle || ''} onChange={(e) => handleInputChange('subtitle', e.target.value)} className="md:col-span-3" />
+            </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
+                <Label htmlFor="imageUrl" className="pt-2 md:text-right">Image Link</Label>
+                <Input id="imageUrl" value={contentToEdit.imageUrl || ''} onChange={(e) => handleInputChange('imageUrl', e.target.value)} className="md:col-span-3" placeholder="e.g. https://..."/>
+            </div>
+          </>
+        )
+      }
+      
+      if (selectedSection.id === 'featuresHero') {
         return (
           <>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">

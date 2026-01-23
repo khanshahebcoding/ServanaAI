@@ -129,44 +129,98 @@
         },
         "featuresHero": {
           "type": "object",
-          "properties": { "title": { "type": "string" }, "subtitle": { "type": "string" } }
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            },
+            "imageUrl": {
+              "type": "string",
+              "description": "URL for the hero image."
+            }
+          }
         },
-        "incidentManagement": { "$ref": "#/entities/FeatureSectionWithSteps" },
-        "assetLifecycle": { "$ref": "#/entities/FeatureSectionWithSteps" },
-        "enterpriseMapping": { "$ref": "#/entities/FeatureSectionWithSteps" },
-        "userManagement": { "$ref": "#/entities/FeatureSectionWithSteps" },
+        "incidentManagement": {
+          "$ref": "#/entities/FeatureSectionWithSteps"
+        },
+        "assetLifecycle": {
+          "$ref": "#/entities/FeatureSectionWithSteps"
+        },
+        "enterpriseMapping": {
+          "$ref": "#/entities/FeatureSectionWithSteps"
+        },
+        "userManagement": {
+          "$ref": "#/entities/FeatureSectionWithSteps"
+        },
         "analytics": {
-            "type": "object",
-            "properties": { "title": { "type": "string" }, "subtitle": { "type": "string" } }
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            }
+          }
         },
         "cta": {
-            "type": "object",
-            "properties": { "title": { "type": "string" }, "subtitle": { "type": "string" } }
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "subtitle": {
+              "type": "string"
+            }
+          }
         }
       }
     },
-     "FeatureSectionWithSteps": {
-        "title": "Feature Section With Steps",
-        "type": "object",
-        "description": "Represents a section on the features page that has a title, subtitle, and a series of steps.",
-        "properties": {
-            "title": { "type": "string" },
-            "subtitle": { "type": "string" },
-            "steps": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": { "type": "number" },
-                        "label": { "type": "string" },
-                        "title": { "type": "string" },
-                        "description": { "type": "string" },
-                        "imageUrl": { "type": "string", "description": "URL of the image for the step." }
-                    },
-                    "required": ["id", "label", "title", "description", "imageUrl"]
-                }
-            }
+    "FeatureSectionWithSteps": {
+      "title": "Feature Section With Steps",
+      "type": "object",
+      "description": "Represents a section on the features page that has a title, subtitle, and a series of steps.",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "label": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "imageUrl": {
+                "type": "string",
+                "description": "URL of the image for the step."
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "title",
+              "description",
+              "imageUrl"
+            ]
+          }
         }
+      }
     },
     "FormSubmission": {
       "title": "Form Submission",
@@ -177,11 +231,24 @@
           "type": "string",
           "description": "The name of the form that was submitted (e.g., 'Contact Sales')."
         },
-        "name": { "type": "string", "description": "Full name of the person submitting the form." },
-        "email": { "type": "string", "format": "email" },
-        "contactNumber": { "type": "string", "description": "Contact number of the person." },
-        "company": { "type": "string" },
-        "message": { "type": "string" },
+        "name": {
+          "type": "string",
+          "description": "Full name of the person submitting the form."
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "contactNumber": {
+          "type": "string",
+          "description": "Contact number of the person."
+        },
+        "company": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
         "appointmentDate": {
           "type": "string",
           "format": "date",
@@ -191,9 +258,16 @@
           "type": "string",
           "description": "Preferred time for an appointment or demo."
         },
-        "submittedAt": { "type": "string", "format": "date-time" }
+        "submittedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
       },
-      "required": ["formName", "email", "submittedAt"]
+      "required": [
+        "formName",
+        "email",
+        "submittedAt"
+      ]
     }
   },
   "auth": {
