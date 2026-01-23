@@ -1,0 +1,13 @@
+--- a/node_modules/react-quill/package.json
++++ b/node_modules/react-quill/package.json
+@@ -94,8 +94,8 @@
+     "url": "https://github.com/zenoamaro/react-quill.git"
+   },
+   "peerDependencies": {
+-    "react": "^16 || ^17 || ^18",
+-    "react-dom": "^16 || ^17 || ^18"
++    "react": "^16 || ^17 || ^18 || ^19",
++    "react-dom": "^16 || ^17 || ^18 || ^19"
+   },
+   "devDependencies": {
+     "@babel/cli": "^7.12.1",

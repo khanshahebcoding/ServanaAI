@@ -17,10 +17,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useFirestore, useDoc, useMemoFirebase, setDocumentNonBlocking, getPublicUrl, uploadFile } from '@/firebase';
+import { useFirestore, useDoc, useMemoFirebase, setDocumentNonBlocking } from '@/firebase';
 import { doc } from 'firebase/firestore';
-import { Plus, Trash2, Upload } from "lucide-react";
-import Image from "next/image";
+import { Plus, Trash2 } from "lucide-react";
 import { getGoogleDriveImageSrc } from "@/lib/utils";
 
 const pages = [
@@ -229,8 +228,8 @@ function EditContent() {
                         <Input id={`step-title-${index}`} value={step.title || ''} onChange={(e) => handleStepChange(index, 'title', e.target.value)} className="md:col-span-3" />
                     </div>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
-                        <Label htmlFor={`step-desc-${index}`} className="pt-2 md:text-right">Description</Label>
-                        <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="md:col-span-3" />
+                        <Label htmlFor={`step-description-${index}`} className="pt-2 md:text-right">Description</Label>
+                        <Textarea id={`step-description-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="md:col-span-3" />
                     </div>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
                         <Label htmlFor={`step-imageUrl-${index}`} className="pt-2 md:text-right">Image Link</Label>
@@ -274,8 +273,8 @@ function EditContent() {
                         <Input id={`step-title-${index}`} value={step.title || ''} onChange={(e) => handleStepChange(index, 'title', e.target.value)} className="md:col-span-3" />
                     </div>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-start">
-                        <Label htmlFor={`step-desc-${index}`} className="pt-2 md:text-right">Description</Label>
-                        <Textarea id={`step-desc-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="md:col-span-3" />
+                        <Label htmlFor={`step-description-${index}`} className="pt-2 md:text-right">Description</Label>
+                        <Textarea id={`step-description-${index}`} value={step.description || ''} onChange={(e) => handleStepChange(index, 'description', e.target.value)} className="md:col-span-3" />
                     </div>
                   </div>
                 ))}
