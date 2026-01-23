@@ -3,11 +3,13 @@
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Card } from "@/components/ui/card";
+import { getGoogleDriveImageSrc } from "@/lib/utils";
 
 const defaultDashboardImage = PlaceHolderImages.find(p => p.id === 'dashboard-mockup');
 
 export function DashboardMockup({ imageUrl }: { imageUrl?: string }) {
-  const imageToDisplay = imageUrl || defaultDashboardImage?.imageUrl;
+  const rawImageUrl = imageUrl || defaultDashboardImage?.imageUrl;
+  const imageToDisplay = rawImageUrl ? getGoogleDriveImageSrc(rawImageUrl) : undefined;
   const description = defaultDashboardImage?.description || "Dashboard mockup";
   const imageHint = defaultDashboardImage?.imageHint || "dashboard mockup";
 
