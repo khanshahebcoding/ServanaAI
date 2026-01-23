@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
 import LifecycleRibbon from "./lifecycle-ribbon";
+import { getGoogleDriveImageSrc } from '@/lib/utils';
 
 const defaultSteps = [
   {
@@ -92,7 +93,7 @@ export function AssetLifecycle({ content: contentFromProps }: { content?: AssetL
                                       <CardContent className="p-0">
                                           {activeStep.imageUrl && (
                                               <Image
-                                                  src={activeStep.imageUrl}
+                                                  src={getGoogleDriveImageSrc(activeStep.imageUrl)}
                                                   alt={activeStep.title}
                                                   width={800}
                                                   height={600}

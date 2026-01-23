@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
 import LifecycleRibbon from "./lifecycle-ribbon";
+import { getGoogleDriveImageSrc } from '@/lib/utils';
 
 const defaultSteps = [
   { id: 1, label: 'Created', title: 'Submit a Ticket with Ease', description: 'Users can create new incidents through multiple channels, including a user-friendly web portal, email integration, or API. All details are captured in a structured format.', imageUrl: 'https://images.unsplash.com/photo-1652018440238-1aeb20a803a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0aWNrZXQlMjBjcmVhdGlvbiUyMGZvcm18ZW58MHx8fHwxNzY4NzMzMDg0fDA&ixlib=rb-4.1.0&q=80&w=1080' },
@@ -78,7 +79,7 @@ export function IncidentManagement({ content: contentFromProps }: { content?: In
                                       <CardContent className="p-0">
                                           {activeStep.imageUrl && (
                                               <Image
-                                                  src={activeStep.imageUrl}
+                                                  src={getGoogleDriveImageSrc(activeStep.imageUrl)}
                                                   alt={activeStep.title}
                                                   width={800}
                                                   height={600}
