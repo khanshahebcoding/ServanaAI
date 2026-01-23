@@ -17,9 +17,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useFirestore, useDoc, useMemoFirebase, setDocumentNonBlocking } from '@/firebase';
+import { useFirestore, useDoc, useMemoFirebase, setDocumentNonBlocking, getPublicUrl, uploadFile } from '@/firebase';
 import { doc } from 'firebase/firestore';
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Upload } from "lucide-react";
+import Image from "next/image";
+import { getGoogleDriveImageSrc } from "@/lib/utils";
 
 const pages = [
   { id: 'home', name: 'Home Page', sections: 6 },
@@ -117,11 +119,11 @@ function EditContent() {
     const handleEditClick = (section: Section) => {
         setSelectedSection(section);
         const currentContent = pageContent?.[section.id] ?? section.content;
-        setEditedContent(JSON.parse(JSON.stringify(currentContent)));
+        setEditedContent(JSON.parse(JSON.stringify(currentContent))); // Deep copy
         setIsDialogOpen(true);
     };
 
-    const handleInputChange = (field: string, value: string) => {
+    const handleInputChange = (field: string, value: string | number) => {
         setEditedContent((prev: any) => ({ ...prev, [field]: value }));
     };
 
@@ -170,6 +172,7 @@ function EditContent() {
             setIsSaving(false);
         }
     };
+    
 
     const renderFormFields = () => {
       if (!selectedSection) return null;
@@ -394,5 +397,3 @@ export default function ContentPage() {
         </Suspense>
     )
 }
-
-    
